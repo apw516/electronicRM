@@ -91,7 +91,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">Tanda tangan perawat</div>
+                    <div class="card-header">Tanda tangan Dokter</div>
                     <div class="card-body">
 
                         <img src="<?php echo e($d->signature); ?>" alt=""> <br>

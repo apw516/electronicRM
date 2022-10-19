@@ -37,16 +37,16 @@
                 <td>Riwayat Alergi</td>
                 <td>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input ml-2 mr-3" type="radio" name="riwayatalergi"
-                            id="riwayatalergi" value="Tidak" checked>
+                        <input class="form-check-input ml-2 mr-3 riwayatalergi" type="radio" name="riwayatalergi"
+                            id="riwayatalergi" value="Tidak" skor="0" checked>
                         <label class="form-check-label" for="inlineRadio1">Tidak</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input mr-3" type="radio" name="riwayatalergi"
+                        <input class="form-check-input mr-3 riwayatalergi" skor="1" type="radio" name="riwayatalergi"
                             id="riwayatalergi" value="Ya">
                         <label class="form-check-label" for="inlineRadio2">Ya</label>
                     </div>
-                    <textarea type="text" class="form-control mt-2" placeholder="Ketik riwayat alergi jika ada ..."></textarea>
+                    <textarea type="text" class="form-control mt-2 " name="riwayat_alergi" id="riwayat_alergi" placeholder="Ketik riwayat alergi jika ada ..."></textarea>
                 </td>
             </tr>
             <tr>
@@ -87,31 +87,31 @@
                 <td>Dirujuk / Konsul</td>
                 <td colspan="3">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input ml-2 mr-3" type="radio" name="dirujuk"
+                        <input class="form-check-input ml-2 mr-3 dirujuk" skor="1" type="radio" name="dirujuk"
                             id="dirujuk" value="gizi klinik" checked>
                         <label class="form-check-label" for="inlineRadio1">Gizi Klinik</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input mr-3" type="radio" name="dirujuk"
+                        <input class="form-check-input mr-3 dirujuk" skor="2" type="radio" name="dirujuk"
                             id="dirujuk" value="rehab medis">
                         <label class="form-check-label" for="inlineRadio2">Rehab medis</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input ml-2 mr-3" type="radio" name="dirujuk"
-                            id="dirujuk" value="tim nyeri" checked>
+                        <input class="form-check-input ml-2 mr-3 dirujuk" skor="3" type="radio" name="dirujuk"
+                            id="dirujuk" value="tim nyeri" >
                         <label class="form-check-label" for="inlineRadio1">Tim nyeri</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input mr-3" type="radio" name="dirujuk"
+                        <input class="form-check-input mr-3 dirujuk" skor="4" type="radio" name="dirujuk"
                             id="dirujuk" value="edukasi">
                         <label class="form-check-label" for="inlineRadio2">Edukasi</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input mr-3" type="radio" name="dirujuk"
-                            id="dirujuk" value="Lain-lain">
+                        <input class="form-check-input mr-3 dirujuk" skor="0" type="radio" name="dirujuk"
+                            id="dirujuk" value="Lain-lain" checked>
                         <label class="form-check-label" for="inlineRadio2">Lain-lain</label>
                     </div>
-                    <textarea type="text" class="form-control mt-2"  name="ketdirujuk" placeholder="Keterangan ..."></textarea>
+                    <textarea type="text" class="form-control mt-2"  name="ketdirujuk" id="ketdirujuk" placeholder="Keterangan ..."></textarea>
                 </td>
             </tr>
         </table>
@@ -158,7 +158,9 @@
         }).datepicker('update', new Date());
     });
     $(document).ready(function() {
-        $(".simpanrm03").click(function() {           
+        $(".simpanrm03").click(function() {
+            alergipasien = $('#riwayatalergi:checked').val()  
+            dirujuk = $('#dirujuk:cheked').val()         
             spinner = $('#loader2');
             spinner.show();
             var canvas = document.getElementById("the_canvas");
@@ -217,6 +219,81 @@
                     }
                 }
             });
+        });
+        $(".riwayatalergi").click(function(){
+            skor = $(this).attr('skor')
+            if (skor == 1 ) {
+                document.getElementById("riwayat_alergi").focus();
+                $('#riwayar_alergi').val('')
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Apakah pasien memiliki alergi???',
+                    text: 'Silahkan lengkapi keterangan alergi pasien',
+                    footer: ''
+                })
+            }else{
+                $('#riwayat_alergi').val('tidak ada')
+            }
+        });
+        $(".dirujuk").click(function(){
+            skor = $(this).attr('skor')
+            if (skor == 1) {
+                document.getElementById("ketdirujuk").focus();
+                $('#ketdirujuk').val('')
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'apakah pasien akan di rujuk ke bagian Gizi klinik??',
+                    text: 'lengkapilah keterangan dibawah ini........',
+                    footer: ''
+                })
+        }else{
+            $('#ketdirujuk').val('')
+        }
+        });
+        $(".dirujuk").click(function(){
+            skor = $(this).attr('skor')
+            if (skor == 2) {
+                document.getElementById("ketdirujuk").focus();
+                $('#ketdirujuk').val('')
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'apakah pasien akan di rujuk ke bagian Rehab Medis??',
+                    text: 'lengkapilah keterangan dibawah ini........',
+                    footer: ''
+                })
+        }else{
+            $('#ketdirujuk').val('')
+        }
+        });
+        $(".dirujuk").click(function(){
+            skor = $(this).attr('skor')
+            if (skor == 3) {
+                document.getElementById("ketdirujuk").focus();
+                $('#ketdirujuk').val('')
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'apakah pasien akan di rujuk ke bagian Tim nyeri??',
+                    text: 'lengkapilah keterangan dibawah ini........',
+                    footer: ''
+                })
+        }else{
+            $('#ketdirujuk').val('')
+        }
+        });
+        $(".dirujuk").click(function(){
+            skor = $(this).attr('skor')
+            if (skor == 4) {
+                document.getElementById("ketdirujuk").focus();
+                $('#ketdirujuk').val('')
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'apakah pasien akan di rujuk ke bagian Edukasi??',
+                    text: 'lengkapilah keterangan dibawah ini........',
+                    footer: ''
+                })
+        }else{
+            $('#ketdirujuk').val('')
+        }
         });
     });
 </script>
