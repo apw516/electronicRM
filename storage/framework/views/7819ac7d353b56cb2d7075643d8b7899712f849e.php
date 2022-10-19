@@ -7,7 +7,34 @@
             </h2>
         </div>
         
-     
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-success card-outline">
+                    <table class="table table-sm">
+                        <tr>
+                            <td>Frekuensi nafas</td>
+                            <td><?php echo e($ass_per[0]->ttv_freq_napas); ?> / menit</td>
+                        </tr>
+                        <tr>
+                            <td>Tekanan darah</td>
+                            <td><?php echo e($ass_per[0]->ttv_tekanan_darah); ?></td>
+                        </tr>
+                        <tr>
+                            <td>Frekuensi nadi</td>
+                            <td><?php echo e($ass_per[0]->ttv_freq_nadi); ?></td>
+                        </tr>
+                        <tr>
+                            <td>Riwayat Psikologis</td>
+                            <td><?php echo e($ass_per[0]->riwayat_Psikologis); ?></td>
+                        </tr>
+                        <tr>
+                            <td>Keluhan Utama</td>
+                            <td><?php echo e($ass_per[0]->keluhan_utama); ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
         <div class="col-md-8">
             <table class="table table-sm table-striped table-hover shadow-sm table-bordered">
                 <thead class="bg-info">

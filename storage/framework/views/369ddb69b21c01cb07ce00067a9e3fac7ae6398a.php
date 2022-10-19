@@ -58,6 +58,48 @@
                                 </div>
             </div>
             </td>
+            <td><?php echo e($d->tgl_selesai); ?></td>
+                            <td>Perawat Ruangan</td>
+                            <td>
+                                Sumber Data <?php echo e($d->sumber_data); ?> <br>
+                                Keluhan Utama = <?php echo e($d->keluhan_utama); ?> <br>
+                                tekanan darah = <?php echo e($d->ttv_tekanan_darah); ?> mmHg <br>
+                                frekuensi nafas = <?php echo e($d->ttv_freq_napas); ?> X/menit<br>
+                                frekuensi nadi = <?php echo e($d->ttv_freq_nadi); ?> X/menit <br>
+                                suhu badan = <?php echo e($d->ttv_suhu); ?> °C<br><br>
+                                
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="text-bold">Rencana Keperawatan</p>
+                                        <?php echo e($d->rencana_perawat); ?>
+
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="text-bold">Tindakan Keperawatan</p>
+                                        <?php echo e($d->tindakan_perawat); ?>
+
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <p class="text-bold">Evaluasi Keperawatan</p>
+                                        <?php echo e($d->evaluasi_perawat); ?>
+
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">Tanda tangan perawat</div>
+                                    <div class="card-body">
+
+                                        <img src="<?php echo e($d->ttd_perawat); ?>" alt=""> <br>
+
+                                    </div>
+                                    <div class="card-footer"></div>
+                                </div>
+            </div>
+            </td>
             </tr>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </tbody>
