@@ -284,7 +284,7 @@
                     _token: "{{ csrf_token() }}",
                     nomorrm
                 },
-                url: '<?= route('tampilcppt') ?>',
+                url: '<?= route('tampilcppt2') ?>',
                 error: function(data) {
                     spinner.hide();
                     Swal.fire({

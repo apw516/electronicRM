@@ -33,3 +33,4 @@ Route::get('/ermdokter', [Erm2Controller::class, 'index'])->name('ermdokter');
 Route::post('/ermform2', [Erm2Controller::class, 'formpasien'])->name('ermform2');
 Route::post('/pilihform2', [Erm2Controller::class, 'pilihform'])->name('pilihform2');
 Route::post('/simpanrm03', [Erm2Controller::class, 'simpanrm03'])->name('simpanrm03');
+Route::post('tampilcppt2', [Erm2Controller::class, 'tampilcppt'])->name('tampilcppt2');
