@@ -7,7 +7,7 @@
             </h2>
         </div>
         
-       {{-- <div class="col-md-3">
+        <div class="col-md-3">
             <div class="card">
                 <div class="card-success card-outline">
                     <table class="table table-sm">
@@ -34,7 +34,7 @@
                     </table>
                 </div>
             </div>
-        </div>--}}
+        </div>
         <div class="col-md-8">
             <table class="table table-sm table-striped table-hover shadow-sm table-bordered">
                 <thead class="bg-info">
@@ -74,8 +74,8 @@
                 nomorrm="{{ $rm }}">CPPT</a></li>
         <li class="nav-item"><a class="nav-link text-dark text-bold" href="#timeline" data-toggle="tab">E - Form</a></li>
        <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis</a></li>
-        <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis & Order
-                Layanan</a></li>
+       {{-- <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis & Order
+                Layanan</a></li>--}}
     </ul>
 </div>
 <div class="card-body scroll">
