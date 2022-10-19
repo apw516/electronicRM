@@ -7,7 +7,7 @@
             </h2>
         </div>
         
-       
+     
         <div class="col-md-8">
             <table class="table table-sm table-striped table-hover shadow-sm table-bordered">
                 <thead class="bg-info">
@@ -47,8 +47,7 @@
                 nomorrm="<?php echo e($rm); ?>">CPPT</a></li>
         <li class="nav-item"><a class="nav-link text-dark text-bold" href="#timeline" data-toggle="tab">E - Form</a></li>
        <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis</a></li>
-        <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis & Order
-                Layanan</a></li>
+       
     </ul>
 </div>
 <div class="card-body scroll">

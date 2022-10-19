@@ -40,7 +40,7 @@ class Erm2Controller extends BaseController
     }
     public function tampilcppt(Request $request)
     {
-        return view('erm2.cppt', [
+        return view('erm.cppt', [
             'ass_kep' =>  DB::select('SELECT * FROM `erm_assesmen_keperawatan_rajal` a
             LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.no_rm = a.no_rm WHERE no_rm = ?',[$request->nomorrm])
         ]);

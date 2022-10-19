@@ -7,7 +7,7 @@
             </h2>
         </div>
         
-        <div class="col-md-3">
+     {{--   <div class="col-md-3">
             <div class="card">
                 <div class="card-success card-outline">
                     <table class="table table-sm">
@@ -34,7 +34,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </div>--}}
         <div class="col-md-8">
             <table class="table table-sm table-striped table-hover shadow-sm table-bordered">
                 <thead class="bg-info">
