@@ -16,7 +16,9 @@ class ErmController extends BaseController
     public function index()
     {
         $unit = auth()->user()->unit;
-        $pasien_poli = DB::select('select kode_kunjungan,fc_nama_px(no_rm) as nama,no_rm,fc_umur(no_rm) as umur, fc_alamat4(no_rm) as alamat , fc_nama_unit1(kode_unit) as unit,tgl_masuk, kelas, counter from ts_kunjungan where kode_unit = ? and status_kunjungan = ?', [$unit, 1]);
+        $pasien_poli = DB::select('select a.kode_kunjungan,fc_nama_px(a.no_rm) as nama,a.no_rm,fc_umur(a.no_rm) as umur, fc_alamat4(a.no_rm) as alamat , fc_nama_unit1(a.kode_unit) as unit,a.tgl_masuk, a.kelas, a.counter, b.kode_kunjungan as kj 
+        from ts_kunjungan a
+        left outer join erm_assesmen_keperawatan_rajal b on b.kode_kunjungan = a.kode_kunjungan where a.kode_unit = ? and a.status_kunjungan = ?', [$unit, 1]);
         return view('erm.index', [
             'menu' => 2,
             'title' => 'Semerusmart | E-RM',
