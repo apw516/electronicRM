@@ -6,16 +6,16 @@
         </div>
     </div>
 
-    <div class="card-body">
+    <div class="card-body container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <table class="table table-sm table-striped table-hover shadow-sm table-bordered">
-                    <thead class="bg-warning">
+                <table class="table table-md table-bordered ">
+                    <thead class="bg-secondary">
                         <th>Tanggal / Jam</th>
                         <th>Profesi</th>
                         <th class="text-center">Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ( Ditulis dengan format SOAP, disertai target yang terukur, evaluasi hasil, tata laksana dituliskan dalam assesmen.</th>
                         <th>Tanggal / Jam</th>
-                        <th>Profesi</th>
+                        <th width="800px">Profesi</th>
                         <th class="text-center">Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ( Ditulis dengan format SOAP, disertai target yang terukur, evaluasi hasil, tata laksana dituliskan dalam assesmen.</th>
 
                     </thead>
@@ -98,6 +98,14 @@
 
                         <img src="{{ $d->signature }}" alt=""> <br>
 
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                        <p class="text-bold text-center"> Waled, {{ $d->tglwaktu_selesai }}
+                            </p>
+                            <p class="text-bold text-center"> {{ $d->nama_dokter }}
+                            </p>
+                        </div>
                     </div>
                     <div class="card-footer"></div>
                 </div>
