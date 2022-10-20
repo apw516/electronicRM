@@ -15,11 +15,18 @@ class Erm2Controller extends BaseController
     {
         $unit = auth()->user()->unit;
         $now = date('Y-m-d');
-        $pasien_poli = DB::select('select a.kode_kunjungan,fc_nama_px(a.no_rm) as nama,a.no_rm,fc_umur(a.no_rm) as umur, fc_alamat4(a.no_rm) as alamat , fc_nama_unit1(a.kode_unit) as unit,a.tgl_masuk, a.kelas, a.counter, b.ttv_tekanan_darah as tekanan_darah
-         FROM ts_kunjungan a
+        $pasien_poli = DB::select('select a.kode_kunjungan,
+        fc_nama_px(a.no_rm) as nama,a.no_rm,fc_umur(a.no_rm) as umur, 
+        fc_alamat4(a.no_rm) as alamat , fc_nama_unit1(a.kode_unit) as unit,
+        a.tgl_masuk, a.kelas, a.counter, 
+        b.ttv_tekanan_darah as tekanan_darah,
+        fc_nama_unit1(a.ref_unit) as asalunit,
+        c.kode_kunjungan as kjdok,
+        b.kode_kunjungan as kjper
+        FROM ts_kunjungan a
         LEFT OUTER JOIN erm_assesmen_keperawatan_rajal b ON b.kode_kunjungan= a.kode_kunjungan 
         LEFT OUTER JOIN erm_assesmen_awal_medis_rajal c ON c.kode_kunjungan = a.kode_kunjungan
-        WHERE a.kode_unit=? AND DATE(a.`tgl_masuk`)=? AND a.status_kunjungan=?' , [$unit, $now, 1]);
+        WHERE a.kode_unit=? AND DATE(a.tgl_masuk)=? AND a.status_kunjungan=?' , [$unit, $now, 1]);
         return view('erm2.index', [
             'menu' => 2,
             'title' => 'Semerusmart | E-RM',
