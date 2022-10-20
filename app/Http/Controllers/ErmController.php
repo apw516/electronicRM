@@ -38,7 +38,7 @@ class ErmController extends BaseController
     public function tampilcppt(Request $request)
     {
         return view('erm.cppt', [
-            'ass_kep' =>  DB::select('SELECT *, b.`keluhan_utama`AS keluhan_utamadokter,  a.`keluhan_utama`AS keluhan_utamaperawat FROM `erm_assesmen_keperawatan_rajal` a LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.no_rm = a.no_rm WHERE a.no_rm = ?',[$request->nomorrm])
+            'ass_kep' =>  DB::select('SELECT *, b.`keluhan_utama`AS keluhan_utamadokter, fc_nama_dpjp(b.dpjp) as nama_dokter, a.`keluhan_utama`AS keluhan_utamaperawat FROM `erm_assesmen_keperawatan_rajal` a LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.no_rm = a.no_rm WHERE a.no_rm = ?',[$request->nomorrm])
         ]);
     }
     public function formpasien(request $request)

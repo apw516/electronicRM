@@ -41,7 +41,7 @@ class Erm2Controller extends BaseController
     public function tampilcppt(Request $request)
     {
         return view('erm.cppt', [
-            'ass_kep' =>  DB::select('SELECT *, b.`keluhan_utama`AS keluhan_utamadokter,  a.`keluhan_utama`AS keluhan_utamaperawat FROM `erm_assesmen_keperawatan_rajal` a
+            'ass_kep' =>  DB::select('SELECT *, b.`keluhan_utama`AS keluhan_utamadokter, fc_nama_dpjp(b.dpjp) as nama_dokter,  a.`keluhan_utama`AS keluhan_utamaperawat FROM `erm_assesmen_keperawatan_rajal` a
             LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.no_rm = a.no_rm WHERE a.no_rm = ?',[$request->nomorrm])
         ]);
     }
@@ -68,6 +68,7 @@ class Erm2Controller extends BaseController
         if ($kelas == '') {
             $kelas = 3;
         }
+        
         $tarif = DB::select("CALL SP_PANGGIL_TARIF_TINDAKAN_RS('$kelas','','1008')");
         // $periode = DB::select('SELECT DATE(ts_kunjungan.tgl_masuk) AS tanggal_masuk FROM ts_kunjungan 
         // LEFT OUTER JOIN ts_layanan_header ON ts_kunjungan.kode_kunjungan = ts_layanan_header.kode_kunjungan

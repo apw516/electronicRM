@@ -1,10 +1,16 @@
 <div class="card">
-    <div class="card-header">CATATAN PERKEMBANGAN PASIEN TERINTEGRASI ( CPPT )</div>
+    <div class="card-header">CATATAN PERKEMBANGAN PASIEN TERINTEGRASI ( CPPT )
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
+            </button>
+        </div>
+    </div>
+
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <table class="table table-sm table-bordered text-xs">
-                    <thead>
+                <table class="table table-sm table-striped table-hover shadow-sm table-bordered">
+                    <thead class="bg-warning">
                         <th>Tanggal / Jam</th>
                         <th>Profesi</th>
                         <th class="text-center">Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ( Ditulis dengan format SOAP, disertai target yang terukur, evaluasi hasil, tata laksana dituliskan dalam assesmen.</th>
@@ -19,7 +25,7 @@
                             <td>{{ $d->tgl_selesai }}</td>
                             <td>Perawat Poli</td>
                             <td>
-                                Sumber Data {{ $d->sumber_data }} <br>
+                                Sumber Data = {{ $d->sumber_data }} <br>
                                 Keluhan Utama = {{ $d->keluhan_utamaperawat }} <br>
                                 tekanan darah = {{ $d->ttv_tekanan_darah }} mmHg <br>
                                 frekuensi nafas = {{ $d->ttv_freq_napas }} X/menit<br>
@@ -58,16 +64,16 @@
             </div>
             </td>
             <td>{{ $d->tglwaktu_selesai }}</td>
-            <td>{{ strtoupper(auth()->user()->name) }}</td>
+            <td>{{ $d->nama_dokter}}</td>
             <td>
-                Sumber Data {{ $d->sumber_data }} <br>
+                Sumber Data = {{ $d->sumber_data }} <br>
                 Keluhan Utama = {{ $d->keluhan_utamadokter }} <br>
                 Riwayat Penyakit = {{ $d->riwayat_penyakit }} <br>
                 Riwayat Alergi = {{ $d->riwayat_alergi_0 }} {{ $d->riwayat_alergi_1}} <br>
                 Pemeriksaan Fisik = {{ $d->pemeriksaan_fisik }} <br>
 
-               
-             
+
+
                 <div class="card">
                     <div class="card-body">
                         <p class="text-bold">Diagnosis</p>

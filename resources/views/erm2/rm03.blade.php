@@ -160,7 +160,7 @@
     $(document).ready(function() {
         $(".simpanrm03").click(function() {
             alergipasien = $('#riwayatalergi:checked').val()  
-            dirujuk = $('#dirujuk:cheked').val()         
+            dirujuk = $('#dirujuk:checked').val()         
             spinner = $('#loader2');
             spinner.show();
             var canvas = document.getElementById("the_canvas");

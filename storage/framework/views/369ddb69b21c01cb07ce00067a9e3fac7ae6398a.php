@@ -1,15 +1,21 @@
 <div class="card">
-    <div class="card-header">CATATAN PERKEMBANGAN PASIEN TERINTEGRASI ( CPPT )</div>
+    <div class="card-header">CATATAN PERKEMBANGAN PASIEN TERINTEGRASI ( CPPT )
+        <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
+            </button>
+        </div>
+    </div>
+
     <div class="card-body">
         <div class="row">
             <div class="col-md-6">
-                <table class="table table-sm table-bordered text-xs">
-                    <thead>
+                <table class="table table-sm table-striped table-hover shadow-sm table-bordered">
+                    <thead class="bg-warning">
                         <th>Tanggal / Jam</th>
                         <th>Profesi</th>
                         <th class="text-center">Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ( Ditulis dengan format SOAP, disertai target yang terukur, evaluasi hasil, tata laksana dituliskan dalam assesmen.</th>
                         <th>Tanggal / Jam</th>
-                        <th>Profesi</th>
+                        <th class="width-300px">Profesi</th>
                         <th class="text-center">Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ( Ditulis dengan format SOAP, disertai target yang terukur, evaluasi hasil, tata laksana dituliskan dalam assesmen.</th>
 
                     </thead>
@@ -19,7 +25,7 @@
                             <td><?php echo e($d->tgl_selesai); ?></td>
                             <td>Perawat Poli</td>
                             <td>
-                                Sumber Data <?php echo e($d->sumber_data); ?> <br>
+                                Sumber Data = <?php echo e($d->sumber_data); ?> <br>
                                 Keluhan Utama = <?php echo e($d->keluhan_utamaperawat); ?> <br>
                                 tekanan darah = <?php echo e($d->ttv_tekanan_darah); ?> mmHg <br>
                                 frekuensi nafas = <?php echo e($d->ttv_freq_napas); ?> X/menit<br>
@@ -59,16 +65,16 @@
             </div>
             </td>
             <td><?php echo e($d->tglwaktu_selesai); ?></td>
-            <td><?php echo e(strtoupper(auth()->user()->name)); ?></td>
+            <td><?php echo e($d->nama_dokter); ?></td>
             <td>
-                Sumber Data <?php echo e($d->sumber_data); ?> <br>
+                Sumber Data = <?php echo e($d->sumber_data); ?> <br>
                 Keluhan Utama = <?php echo e($d->keluhan_utamadokter); ?> <br>
                 Riwayat Penyakit = <?php echo e($d->riwayat_penyakit); ?> <br>
                 Riwayat Alergi = <?php echo e($d->riwayat_alergi_0); ?> <?php echo e($d->riwayat_alergi_1); ?> <br>
                 Pemeriksaan Fisik = <?php echo e($d->pemeriksaan_fisik); ?> <br>
 
-               
-             
+
+
                 <div class="card">
                     <div class="card-body">
                         <p class="text-bold">Diagnosis</p>

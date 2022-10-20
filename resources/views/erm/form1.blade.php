@@ -499,7 +499,7 @@
             <thead>
                 <th class="text-center">Tanggal Assesmen Perawat</th>
                 <th class="text-center">Nama Perawat</th>
-                <th>Tanda Tangan Dokter</th>
+                <th>Tanda Tangan Perawat</th>
             </thead>
             <tbody>
                 <tr class="text-center">
