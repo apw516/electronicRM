@@ -49,8 +49,7 @@ class Erm2Controller extends BaseController
     {
         return view('erm.cppt', [
             'ass_kep' =>  DB::select('SELECT *, b.`keluhan_utama`AS keluhan_utamadokter, fc_nama_dpjp(b.dpjp) as nama_dokter,  a.`keluhan_utama`AS keluhan_utamaperawat FROM `erm_assesmen_keperawatan_rajal` a
-            LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.kode_kunjungan = a.kode_kunjungan 
-            WHERE a.no_rm = ?',[$request->nomorrm])
+            LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.kode_kunjungan = a.kode_kunjungan WHERE a.no_rm = ?',[$request->nomorrm])
         ]);
     }
     public function formpasien(request $request)
