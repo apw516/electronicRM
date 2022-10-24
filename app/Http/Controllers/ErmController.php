@@ -43,6 +43,16 @@ class ErmController extends BaseController
             'ass_kep' =>  DB::select('SELECT *, b.`keluhan_utama`AS keluhan_utamadokter, fc_nama_dpjp(b.dpjp) as nama_dokter, a.`keluhan_utama`AS keluhan_utamaperawat FROM `erm_assesmen_keperawatan_rajal` a LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.kode_kunjungan = a.kode_kunjungan WHERE a.no_rm = ? ORDER BY a.idx desc',[$request->nomorrm])
         ]);
     }
+    public function tampilresume(Request $request){
+        
+        return view('erm.resumemedis', [
+            'ass_kep' =>  DB::select('SELECT *, b.`keluhan_utama`AS keluhan_utamadokter, fc_nama_dpjp(b.dpjp) AS nama_dokter,  
+            a.`keluhan_utama`AS keluhan_utamaperawat, fc_nama_px(a.`no_rm`) AS nama_pasien 
+            FROM `erm_assesmen_keperawatan_rajal` a
+            LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.kode_kunjungan = a.kode_kunjungan WHERE a.no_rm = ? ORDER BY a.idx desc',[$request->nomorrm])
+        ]);
+
+    }
     public function formpasien(request $request)
     {
         $nomorrm = $request->rm;

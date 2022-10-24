@@ -52,7 +52,7 @@
             <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis</a></li>
            {{-- <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis & Order
                     Layanan</a></li>--}}
-
+            <li class="nav-item"><a class="nav-link tampilresume" href="#resumemedis" data-toggle="tab" nomorrm="{{ $rm }}">Resume Medis</a></li>
         </ul>
     </div>
     <div class="card-body ">
@@ -141,6 +141,10 @@
             <!-- /.tab-pane -->
             <div class="tab-pane" id="cppt">
                 <div class="viewcppt">
+                </div>
+            </div>
+            <div class="tab-pane" id="resumemedis">
+                <div class="viewresume">
                 </div>
             </div>
             <div class="tab-pane" id="timeline">
@@ -305,7 +309,32 @@
             }
         });
     });
-
+    $(".tampilresume").click(function() {
+        nomorrm = $(this).attr('nomorrm')
+        spinner = $('#loader2');
+        spinner.show();
+        $.ajax({
+            type: 'post',
+            data: {
+                _token: "{{ csrf_token() }}",
+                nomorrm
+            },
+            url: '<?= route('tampilresume') ?>',
+            error: function(data) {
+                spinner.hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ooopss....',
+                    text: 'Sepreti ada masalah ...',
+                    footer: ''
+                })
+            },
+            success: function(response) {
+                spinner.hide();
+                $('.viewresume').html(response)
+            }
+        });
+    });
     function carilayanan() {
         spinner = $('#loader');
         spinner.show();

@@ -12,6 +12,7 @@ Route::post('register', [LoginController::class, 'register'])->middleware('guest
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('cariunit', [ErmController::class, 'cariunit'])->name('cariunit');
 Route::post('tampilcppt', [ErmController::class, 'tampilcppt'])->name('tampilcppt');
+Route::post('tampilresume', [ErmController::class, 'tampilresume'])->name('tampilresume');
 
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard2');
@@ -28,9 +29,10 @@ Route::post('/simpanradiologi', [ErmController::class, 'simpanradiologi'])->name
 Route::post('/simpanlayanan', [ErmController::class, 'simpanlayanan'])->name('simpanlayanan');
 Route::get('/caritarif', [ErmController::class, 'caritarif'])->name('caritarif');
 Route::get('/caritarif', [ErmController::class, 'caritarif'])->name('caritarif');
-
+Route::post('tampilresume', [ErmController::class, 'tampilresume'])->name('tampilresume');
 Route::get('/ermdokter', [Erm2Controller::class, 'index'])->name('ermdokter');
 Route::post('/ermform2', [Erm2Controller::class, 'formpasien'])->name('ermform2');
 Route::post('/pilihform2', [Erm2Controller::class, 'pilihform'])->name('pilihform2');
 Route::post('/simpanrm03', [Erm2Controller::class, 'simpanrm03'])->name('simpanrm03');
 Route::post('tampilcppt2', [Erm2Controller::class, 'tampilcppt'])->name('tampilcppt2');
+Route::post('tampilresume2', [ErmController::class, 'tampilresume'])->name('tampilresume2');

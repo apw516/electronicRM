@@ -8,7 +8,7 @@
 
     
                 <table class="table table-md table-bordered ">
-                    <thead class="bg-secondary">
+                    <thead class="bg-warning">
                         <th>Tanggal / Jam</th>
                         <th>Profesi</th>
                         <th class="text-center">Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ( Ditulis dengan format SOAP, disertai target yang terukur, evaluasi hasil, tata laksana dituliskan dalam assesmen.</th>

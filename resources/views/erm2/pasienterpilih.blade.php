@@ -76,6 +76,7 @@
        <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis</a></li>
        {{-- <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis & Order
                 Layanan</a></li>--}}
+                <li class="nav-item"><a class="nav-link tampilresume" href="#resumemedis" data-toggle="tab" nomorrm="{{ $rm }}">Resume Medis</a></li>
     </ul>
 </div>
 <div class="card-body scroll">
@@ -140,6 +141,10 @@
             <div class="viewcppt">
             </div>
         </div>
+        <div class="tab-pane" id="resumemedis">
+                <div class="viewresume">
+                </div>
+            </div>
         <div class="tab-pane" id="timeline">
             <div class="form-group">
                 <select class="custom-select form-control-border text-xs" id="jenisform" onchange="gantiform()">
@@ -300,7 +305,32 @@
                 }
             });
     });
-
+    $(".tampilresume").click(function() {
+        nomorrm = $(this).attr('nomorrm')
+        spinner = $('#loader2');
+        spinner.show();
+        $.ajax({
+            type: 'post',
+            data: {
+                _token: "{{ csrf_token() }}",
+                nomorrm
+            },
+            url: '<?= route('tampilresume2') ?>',
+            error: function(data) {
+                spinner.hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ooopss....',
+                    text: 'Sepreti ada masalah ...',
+                    footer: ''
+                })
+            },
+            success: function(response) {
+                spinner.hide();
+                $('.viewresume').html(response)
+            }
+        });
+    });
     function carilayanan() {
         spinner = $('#loader');
         spinner.show();

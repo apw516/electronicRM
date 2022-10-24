@@ -462,7 +462,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="text-md text-bold bg-secondary">Diagnosa Keperawatan</td>
+                    <td colspan="3" class="text-md text-bold bg-secondary">Diagnosa Keperawatan/Kebidanan</td>
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -470,7 +470,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="text-md text-bold bg-secondary">Rencana Keperawatan</td>
+                    <td colspan="3" class="text-md text-bold bg-secondary">Rencana Keperawatan/Kebidanan</td>
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -478,7 +478,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="text-md text-bold bg-secondary">Tindakan Keperawatan</td>
+                    <td colspan="3" class="text-md text-bold bg-secondary">Tindakan Keperawatan/Kebidanan</td>
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -486,7 +486,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="3" class="text-md text-bold bg-secondary">Evaluasi Keperawatan</td>
+                    <td colspan="3" class="text-md text-bold bg-secondary">Evaluasi Keperawatan/Kebidanan</td>
                 </tr>
                 <tr>
                     <td colspan="3">
@@ -497,9 +497,9 @@
         </table>
         <table class="table table-sm text-md">
             <thead>
-                <th class="text-center">Tanggal Assesmen Perawat</th>
-                <th class="text-center">Nama Perawat</th>
-                <th>Tanda Tangan Perawat</th>
+                <th class="text-center">Tanggal Assesmen Perawat/Bidan</th>
+                <th class="text-center">Nama Perawat/Bidan</th>
+                <th>Tanda Tangan Perawat/Bidan</th>
             </thead>
             <tbody>
                 <tr class="text-center">
