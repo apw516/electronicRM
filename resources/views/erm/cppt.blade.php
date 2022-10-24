@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card scroll">
     <div class="card-header">CATATAN PERKEMBANGAN PASIEN TERINTEGRASI ( CPPT )
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
@@ -6,11 +6,9 @@
         </div>
     </div>
 
-    <div class="card-body container-fluid">
-        <div class="row">
-            <div class="col-md-6">
+    
                 <table class="table table-md table-bordered ">
-                    <thead class="bg-secondary">
+                    <thead class="bg-warning">
                         <th>Tanggal / Jam</th>
                         <th>Profesi</th>
                         <th class="text-center">Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ( Ditulis dengan format SOAP, disertai target yang terukur, evaluasi hasil, tata laksana dituliskan dalam assesmen.</th>
@@ -65,7 +63,7 @@
             </td>
             <td>{{ $d->tglwaktu_selesai }}</td>
             <td>{{ $d->nama_dokter}}</td>
-            <td>
+            <td>@if ($d->kode_kunjungan != null) 
                 Sumber Data = {{ $d->sumber_data }} <br>
                 Keluhan Utama = {{ $d->keluhan_utamadokter }} <br>
                 Riwayat Penyakit = {{ $d->riwayat_penyakit }} <br>
@@ -110,12 +108,12 @@
                     <div class="card-footer"></div>
                 </div>
         </div>
+        @else <p class="text-danger">Dokter belum mengisi Assesmen awal medis</p>
+        @endif
         </td>
         </tr>
         @endforeach
         </tbody>
         </table>
-    </div>
-</div>
-</div>
+ 
 </div>
