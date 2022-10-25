@@ -37,6 +37,17 @@ class ErmController extends BaseController
             echo json_encode($arr_result);
         }
     }
+    public function tampildatapasien(){
+        $unit = auth()->user()->unit;
+        $pasien_poli = DB::select('select a.kode_kunjungan,fc_nama_px(a.no_rm) as nama,a.no_rm,fc_umur(a.no_rm) as umur, fc_alamat4(a.no_rm) as alamat , fc_nama_unit1(a.kode_unit) as unit,a.tgl_masuk, a.kelas, a.counter, b.kode_kunjungan as kj 
+        ,fc_nama_unit1(a.ref_unit) as asalunit from ts_kunjungan a
+        left outer join erm_assesmen_keperawatan_rajal b on b.kode_kunjungan = a.kode_kunjungan where a.kode_unit = ? and a.status_kunjungan = ?', [$unit, 1]);
+        return view('erm.tabeldatapasien', [
+            'menu' => 2,
+            'title' => 'Semerusmart | E-RM',
+            'pasien' => $pasien_poli
+        ]);
+    }
     public function tampilcppt(Request $request)
     {
         return view('erm.cppt', [

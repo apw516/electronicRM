@@ -15,7 +15,7 @@
                 </thead>
                 <tbody>
                     <?php $__currentLoopData = $pasien; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $p): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>                        
-                    <tr class="<?php if($p->kjper != (null) ): ?> pilihpasien <?php endif; ?> toastsDefaultSuccess <?php if($p->kjdok == (null) ): ?> bg-danger <?php endif; ?> "  nomor-rm="<?php echo e($p->no_rm); ?>" tglkunjugan="<?php echo e($p->tgl_masuk); ?>" nama="<?php echo e($p->nama); ?>" kodekunjungan="<?php echo e($p->kode_kunjungan); ?>" alamat="<?php echo e($p->alamat); ?>" counter="<?php echo e($p->counter); ?>"umur="<?php echo e($p->umur); ?>" unit="<?php echo e($p->unit); ?>" tglmasuk = <?php echo e($p->tgl_masuk); ?>>
+                    <tr class="<?php if($p->kjper != (null) ): ?> pilihpasien toastsDefaultSuccess <?php else: ?> bg-danger  <?php endif; ?> "  nomor-rm="<?php echo e($p->no_rm); ?>" tglkunjugan="<?php echo e($p->tgl_masuk); ?>" nama="<?php echo e($p->nama); ?>" kodekunjungan="<?php echo e($p->kode_kunjungan); ?>" alamat="<?php echo e($p->alamat); ?>" counter="<?php echo e($p->counter); ?>"umur="<?php echo e($p->umur); ?>" unit="<?php echo e($p->unit); ?>" tglmasuk = <?php echo e($p->tgl_masuk); ?>>
                         <td hidden><?php echo e($p->kode_kunjungan); ?></td>
                         <td><?php echo e($p->tgl_masuk); ?></td>
                         <td><?php echo e($p->no_rm); ?></td>

@@ -944,6 +944,8 @@
                                 text: 'Data berhasil di simpan!',
                                 footer: ''
                             })
+                        ambildatapasien()
+
                         }
                     }
                 });

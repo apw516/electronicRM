@@ -619,6 +619,7 @@
                             text: 'Data berhasil disimpan!',
                             footer: ''
                         })
+                        ambildatapasien()
                     }
                 }
             });

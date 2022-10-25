@@ -30,6 +30,8 @@ Route::post('/simpanlayanan', [ErmController::class, 'simpanlayanan'])->name('si
 Route::get('/caritarif', [ErmController::class, 'caritarif'])->name('caritarif');
 Route::get('/caritarif', [ErmController::class, 'caritarif'])->name('caritarif');
 Route::post('tampilresume', [ErmController::class, 'tampilresume'])->name('tampilresume');
+Route::post('tampildatapasien', [ErmController::class, 'tampildatapasien'])->name('tampildatapasien');
+
 });
 
 Route::group(['middleware' => ['auth', 'hak_akses:3']], function () {
