@@ -103,6 +103,6 @@
         @yield('container')
     </div>
     <!-- ./wrapper -->
-    @include('erm2.templates.footer')  
+    @include('erm2.footer')  
 </body>
 </html>

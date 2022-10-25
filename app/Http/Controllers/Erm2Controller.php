@@ -9,10 +9,17 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\assesmenawal;
 use App\Models\assesmenawal_med;
-class Erm2Controller extends BaseController
+class Erm2Controller extends Controller
 {
     public function index()
     {
+        
+        return view('erm2.index', [
+            'menu' => 2,
+            'title' => 'Semerusmart | E-RM',
+        ]);
+    }
+    public function ambildatapasien(){
         $unit = auth()->user()->unit;
         $now = date('Y-m-d');
         $pasien_poli = DB::select('select a.kode_kunjungan,
@@ -27,9 +34,7 @@ class Erm2Controller extends BaseController
         LEFT OUTER JOIN erm_assesmen_keperawatan_rajal b ON b.kode_kunjungan= a.kode_kunjungan 
         LEFT OUTER JOIN erm_assesmen_awal_medis_rajal c ON c.kode_kunjungan = a.kode_kunjungan
         WHERE a.kode_unit=? AND DATE(a.tgl_masuk)=? AND a.status_kunjungan=?' , [$unit, $now, 1]);
-        return view('erm2.index', [
-            'menu' => 2,
-            'title' => 'Semerusmart | E-RM',
+        return view('erm2.datapasien', [
             'pasien' => $pasien_poli
         ]);
     }
@@ -63,24 +68,12 @@ class Erm2Controller extends BaseController
         $counter = $request->counter;
         $umur = $request->umur;
         $tglmasuk = $request->tglmasuk;
-        $kelas = $request->kelas;
-        $periode = DB::select('SELECT DISTINCT DATE(tgl_masuk) as tgl_masuk from ts_kunjungan where no_rm = ? ORDER BY tgl_masuk desc', [$nomorrm]);
-        $COUNTER = DB::select('SELECT DISTINCT counter from ts_kunjungan where no_rm = ?', [$nomorrm]);
-        $dokter = DB::select('SELECT * from mt_kuota_dokter_poli where kode_poli = ?', [$unit_log]);
-        $all_licencies = collect();
-        foreach ($COUNTER as $key => $column) {
-            $layanan = DB::select("CALL RINCIAN_BIAYA_FINAL('$nomorrm','$column->counter','1','1')");
-            $all_licencies = $all_licencies->merge($layanan);
-        }
+        $kelas = $request->kelas;       
+        $dokter = DB::select('SELECT * from mt_kuota_dokter_poli where kode_poli = ?', [$unit_log]);       
         if ($kelas == '') {
             $kelas = 3;
-        }
-        
-        $tarif = DB::select("CALL SP_PANGGIL_TARIF_TINDAKAN_RS('$kelas','','1008')");
-        // $periode = DB::select('SELECT DATE(ts_kunjungan.tgl_masuk) AS tanggal_masuk FROM ts_kunjungan 
-        // LEFT OUTER JOIN ts_layanan_header ON ts_kunjungan.kode_kunjungan = ts_layanan_header.kode_kunjungan
-        // LEFT OUTER JOIN ts_layanan_detail ON ts_layanan_header.id = ts_layanan_detail.row_id_header
-        // WHERE no_rm = ? GROUP BY ts_kunjungan.tgl_masuk DESC',[$nomorrm]);
+        }        
+        $tarif = DB::select("CALL SP_PANGGIL_TARIF_TINDAKAN_RS('$kelas','','1008')");       
         $ass_per = DB::select('SELECT *  from erm_assesmen_keperawatan_rajal where no_rm = ? and kode_kunjungan = ? and kode_unit = ?', [$nomorrm,$kodekunjungan,$unit_log]);
         //query aambil riwayat medis
         return view('erm2.pasienterpilih', [
@@ -91,8 +84,6 @@ class Erm2Controller extends BaseController
             'alamat' => $alamat,
             'tglmasuk' => $tglmasuk,
             'kodekunjungan' => $kodekunjungan,
-            'kunjungan' => $all_licencies,
-            'periode' => $periode,
             'umur' => $umur,
             'tglkunjugan' => $request->tglkunjugan,
             'ass_per' => $ass_per,
@@ -185,13 +176,14 @@ class Erm2Controller extends BaseController
             'keluhan_utama' => $dataSet['keluhanutama'],
             'riwayat_penyakit' => $dataSet['riwayatpenyakit'],
             'riwayat_alergi_0' => $dataSet['riwayatalergi'],
-            'riwayat_alergi_1' =>'',
+            'riwayat_alergi_1' => $dataSet['keteranganriwayat_alergi'],
             'riwayat_obat_minum' => $dataSet['riwayatobat'],
             'pemeriksaan_fisik' => $dataSet['pemeriksaanfisik'],
             'diagnosis' => $dataSet['diagnosa'],
             'rencana_terapi' => $dataSet['rencanaterapi'],
             'rencana_pemeriksaan_penunjang' => $dataSet['rencanapemeriksaanpenunjang'],
             'dirujuk_ke' => $dataSet['dirujuk'],
+            'keterangan_dirujuk' => $dataSet['ketdirujuk'],
             'tglwaktu_selesai' => Carbon::now()->timezone('Asia/Jakarta'),
             'dpjp' =>  auth()->user()->kode_dpjp,
             'kode_unit' => $unit_log,

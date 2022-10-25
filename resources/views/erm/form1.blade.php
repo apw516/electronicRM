@@ -1,13 +1,13 @@
 <div class="card scroll">
-    <div class="card-header">
+    <div style="font-family:calibri" class="card-header text-md">
         RM.02.01-RJ / Pasien dewasa
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
             </button>
         </div>
     </div>
-    <form action="" class="simpanrm2 ">
-        <table class="table table-sm text-md">
+    <form action="" class="simpanrm2">
+        <table style="font-family:calibri" class="table table-md text-md">
             <tr>
                 <td class="text-bold">Tanggal & Jam Kunjungan</td>
                 <td><input readonly class="form-control form-control-sm" name="tgldanjamkunjungan_pasienbaru" id="tgldanjamkunjungan_pasienbaru" value="{{ $tglmasuk }}"></td>
@@ -103,7 +103,7 @@
                         <label class="form-check-label" for="inlineRadio2">Pensiun</label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input mr-3" type="radio" name="pekerjaan_pasienbaru" id="pekerjaan_pasienbaru" value="6" @if ($pasien[0]->pekerjaan == 6) checked @endif>
+                        <input class="form-check-input mr-3" type="radio" name="pekerjaan_pasienbaru" id="pekerjaan_pasienbaru" value="6">
                         <label class="form-check-label" for="inlineRadio2">Lain -
                             lain</label>
                     </div>
@@ -262,7 +262,7 @@
                 </td>
             </tr>
         </table>
-        <table class="table table-sm">
+        <table style="font-family:calibri" class="table table-md text-md">
             <thead>
                 <th colspan="2">Assement Resiko Jatuh</th>
             </thead>
@@ -316,7 +316,7 @@
                 </td>
             </tr>
         </table>
-        <table class="table table-sm">
+        <table style="font-family:calibri" class="table table-md text-md">
             <thead>
                 <th colspan="3">Skrinning Gizi</th>
                 <tr>
@@ -413,7 +413,7 @@
                     <td colspan="2" class="text-center">
                         <h5>Total Skor</h5>
                     </td>
-                    <td><input readonly type="text" class="form-control form-control-sm" id="totalskorgizi" name="totalskorgizi"></td>
+                    <td><input readonly type="text" class="form-control form-control-sm" id="totalskorgizi" name="totalskorgizi" value="0"></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="text-bold">3. Pasien dengan diagnosa khusus : Penyakit DM / Ginjal /
@@ -427,13 +427,13 @@
                 <tr>
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Tidak">
+                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Tidak" checked>
                             <label class="form-check-label" for="inlineRadio2"> Tidak </label>
                         </div>
                     </td>
                     <td colspan="2">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Ya" checked>
+                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Ya">
                             <label class="form-check-label" for="inlineRadio2"> Ya</label>
                         </div>
                     </td>
@@ -495,7 +495,7 @@
                 </tr>
             </tbody>
         </table>
-        <table class="table table-sm text-md">
+        <table style="font-family:calibri" class="table table-md text-md">
             <thead>
                 <th class="text-center">Tanggal Assesmen Perawat</th>
                 <th class="text-center">Nama Perawat</th>
@@ -620,6 +620,7 @@
                             text: 'Data berhasil disimpan!',
                             footer: ''
                         })
+                        ambildatapasien()
                     }
                 }
             });

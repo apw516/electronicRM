@@ -22,7 +22,7 @@
   <script src="{{ asset('public/semeru/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-    $(".preloader2").fadeOut();
+    // $(".preloader2").fadeOut();
       $(function() {
           $("#tabelpasienterpilih").DataTable({
               "responsive": true,
@@ -32,53 +32,7 @@
               "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
           });
       });
-      $(function() {
-          $("#datapasien").DataTable({
-              "responsive": false,
-              "lengthChange": false,
-              "pageLength": 100,
-              "autoWidth": false,
-              "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-          });
-      });
-    $('#datapasien').on('click', '.pilihpasien', function() {
-        spinner = $('#loader2');
-        spinner.show();
-        rm = $(this).attr('nomor-rm')
-        nama = $(this).attr('nama')
-        alamat = $(this).attr('alamat')
-        kodekunjungan = $(this).attr('kodekunjungan')
-        unit = $(this).attr('unit')
-        tglmasuk = $(this).attr('tglmasuk')
-        counter = $(this).attr('counter')
-        umur = $(this).attr('umur')
-        $(".pasienterpilih").slideToggle("slow");
-        document.getElementById("tabelpasien").style.display = "none";
-        // $('#tabelpasien').attr('hidden',true)       
-        $.ajax({
-                type: 'post',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    rm,
-                    nama,
-                    alamat,
-                    kodekunjungan,
-                    unit,
-                    tglmasuk,
-                    umur,
-                    counter
-                },
-                url: '<?= route('ermform') ?>',
-                error: function(data) {
-                    spinner.hide();
-                   alert('error')
-                },
-                success: function(response) {
-                    spinner.hide();
-                    $('.pasienterpilih').html(response)
-                }
-            });
-    });
+     
     function batalpilih()
     {
         $("#tabelpasien").slideToggle("slow");

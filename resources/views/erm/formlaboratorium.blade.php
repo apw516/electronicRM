@@ -1,4 +1,4 @@
-<div class="card scroll container">
+<div class="card">
     <div class="card-header bg-light">
         FORM LABORATORIUM
         <div class="card-tools">
@@ -6,9 +6,9 @@
             </button>
         </div>
     </div>
-    <form action="" name="formlaboratorium">
-        <div class="card-body">
-            <table class="table table-bordered table-sm text-xs">
+    <div class="card-body">
+    <form action="" class="formlaboratorium">
+            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                 <tr>
                     <td>Tanggal</td>
                     <td><input type="text" readonly class="form-control" id="tglmasuk" name="tglmasuk" value="{{ $tglmasuk }}"></td>
@@ -44,10 +44,10 @@
             <div class="row mt-2">
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-header">HEMATOLOGI</div>
+                        <div Style="font-family:calibri" class="card-header">HEMATOLOGI</div>
                         <div class="card-body">
                             <p class="text-bold">RUTIN</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -242,9 +242,9 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold">URINE</p>
+                            <p Style="font-family:calibri" class="text-bold">URINE</p>
 
-                            <table class="table table-bordered table-sm text-xs">
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -334,8 +334,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold">HEHAMILAN</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold">HEHAMILAN</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -353,8 +353,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> BIOLOGI MOLEKULER</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> BIOLOGI MOLEKULER</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -377,10 +377,10 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-header">KIMIA KLINIK</div>
+                        <div Style="font-family:calibri" class="card-header">KIMIA KLINIK</div>
                         <div class="card-body">
-                            <p class="text-bold">FAAL HATI</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold">FAAL HATI</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -454,9 +454,9 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold">LEMAK</p>
+                            <p Style="font-family:calibri" class="text-bold">LEMAK</p>
 
-                            <table class="table table-bordered table-sm text-xs">
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -498,8 +498,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold">FAAL GINJAL</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold">FAAL GINJAL</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -549,8 +549,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> GULA DARAH</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> GULA DARAH</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -592,8 +592,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> ELEKTROLIT</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> ELEKTROLIT</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -651,8 +651,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> PROFIL JANTUNG</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> PROFIL JANTUNG</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -699,10 +699,10 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-header">IMUNNOLOGI</div>
+                        <div Style="font-family:calibri" class="card-header">IMUNNOLOGI</div>
                         <div class="card-body">
-                            <p class="text-bold">TORCH</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold">TORCH</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -793,7 +793,7 @@
                                 </tr>
                             </table>
                             <p class="text-bold">PSM</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -827,8 +827,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> INFEKSI LAIN</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> INFEKSI LAIN</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -862,8 +862,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> RHEUMATIK</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> RHEUMATIK</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -889,8 +889,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> PETANDA TUMOR</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> PETANDA TUMOR</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -932,8 +932,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> ALERGI</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> ALERGI</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -943,8 +943,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> Hepatitis</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> Hepatitis</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -983,10 +983,10 @@
                 </div>
                 <div class="col-md-3">
                     <div class="card">
-                        <div class="card-header">MIKROBIOLOGI</div>
+                        <div Style="font-family:calibri" class="card-header">MIKROBIOLOGI</div>
                         <div class="card-body">
-                            <p class="text-bold">PREPARAT DIRECT</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold">PREPARAT DIRECT</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -1028,8 +1028,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold">KULTUR</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold">KULTUR</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -1095,8 +1095,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> ANALISA LAIN</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> ANALISA LAIN</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -1162,8 +1162,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> NARKOBA</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> NARKOBA</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -1205,8 +1205,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> HORMON</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> HORMON</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
 
                                 <tr>
                                     <td>
@@ -1265,8 +1265,8 @@
                                     </td>
                                 </tr>
                             </table>
-                            <p class="text-bold"> FAECES</p>
-                            <table class="table table-bordered table-sm text-xs">
+                            <p Style="font-family:calibri" class="text-bold"> FAECES</p>
+                            <table Style="font-family:calibri" class="table table-bordered table-sm text-md">
                                 <tr>
                                     <td>
                                         <div class="form-check">
@@ -1299,8 +1299,9 @@
                     <button type="button" class="btn btn-success float-right mr-2 tombol-simpanlab">Simpan</button>
                 </div>
             </div>
-        </div>
+       
     </form>
+     </div>
 </div>
 
 <script>
@@ -1310,6 +1311,8 @@
     });
     $(document).ready(function() {
         $('.tombol-simpanlab').click(function() {
+            spinner = $('#loader2');
+            spinner.show();
             var data = $('.formlaboratorium').serializeArray();
             kodekunjungan = $('#kodekunjungan').val()
             rm = $('#nomorrm').val()
@@ -1335,6 +1338,7 @@
                 },
                 url: '<?= route('simpanformlab') ?>',
                 error: function(data) {
+                    spinner.hide()
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops....',
@@ -1343,6 +1347,7 @@
                     })
                 },
                 success: function(data) {
+                    spinner.hide()
                     if (data.kode == 500) {
                         Swal.fire({
                             icon: 'error',
