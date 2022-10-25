@@ -1,20 +1,19 @@
 <div class="card scroll">
-    <div class="card-header">
-        RM.02.01-RJ / Pasien dewasa
+    <div class="card-header text-bold">
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
             </button>
         </div>
     </div>
     <form action="" class="simpanrm2 ">
-        <table class="table table-sm text-md">
+        <table class="table table-md text-md">
             <tr>
                 <td class="text-bold">Tanggal & Jam Kunjungan</td>
-                <td><input readonly class="form-control form-control-sm" name="tgldanjamkunjungan_pasienbaru" id="tgldanjamkunjungan_pasienbaru" value="{{ $tglmasuk }}"></td>
+                <td><input readonly class="form-control form-control-md" name="tgldanjamkunjungan_pasienbaru" id="tgldanjamkunjungan_pasienbaru" value="{{ $tglmasuk }}"></td>
             </tr>
             <tr>
                 <td class="text-bold">Tanggal & Jam Pengkajian</td>
-                <td><input readonly class="form-control form-control-sm" value="{{ $now }}" id="tgldanjampengkajian_pasienbaru" name="tgldanjampengkajian_pasienbaru"></td>
+                <td><input readonly class="form-control form-control-md" value="{{ $now }}" id="tgldanjampengkajian_pasienbaru" name="tgldanjampengkajian_pasienbaru"></td>
             </tr>
             <tr>
                 <td class="text-bold">Sumber Data</td>
@@ -44,7 +43,7 @@
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
                         <input type="text" class="form-control form-control-sm" name="tekanandarah_pasienbaru" id="tekanandarah_pasienbaru" />
                         <div class="input-group-append">
-                            <div class="input-group-text text-xs">mmHg</div>
+                            <div class="input-group-text text-md">mmHg</div>
                         </div>
                     </div>
                 </td>
@@ -53,7 +52,7 @@
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
                         <input type="text" class="form-control form-control-sm" name="frekuensinadi_pasienbaru" id="frekuensinadi_pasienbaru" />
                         <div class="input-group-append">
-                            <div class="input-group-text text-xs">X / Menit</div>
+                            <div class="input-group-text text-md">X / Menit</div>
                         </div>
                     </div>
                 </td>
@@ -64,7 +63,7 @@
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
                         <input type="text" class="form-control form-control-sm" name="frekuensinapas_pasienbaru" id="frekuensinapas_pasienbaru" />
                         <div class="input-group-append">
-                            <div class="input-group-text text-xs">X / Menit</div>
+                            <div class="input-group-text text-md">X / Menit</div>
                         </div>
                     </div>
                 </td>
@@ -73,7 +72,7 @@
                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
                         <input type="text" class="form-control form-control-sm" name="suhu_pasienbaru" id="suhu_pasienbaru" />
                         <div class="input-group-append">
-                            <div class="input-group-text text-xs">°C</div>
+                            <div class="input-group-text text-md">°C</div>
                         </div>
                     </div>
                 </td>
@@ -240,13 +239,13 @@
                         <input class="form-check-input mr-3 cacat_pasienbaru" skor="2" type="radio" name="cacat_pasienbaru" id="cacat_pasienbaru" value="Ya">
                         <label class="form-check-label" for="inlineRadio2">Ya</label>
                     </div>
-                    <input type="text" class="form-control form-control-sm" id="namacacatubuh" name="namacacatubuh" placeholder="Sebutkan cacat tubuh ..." value="tidak ada">
+                    <input type="text" class="form-control form-control-sm mt-3" id="namacacatubuh" name="namacacatubuh" placeholder="Sebutkan cacat tubuh ..." value="tidak ada">
                 </td>
             </tr>
             <TR>
-                <td colspan="4" class="text-center bg-secondary mt-3">Assement Nyeri</td>
+                <td colspan="4" class="text-center text-bold bg-secondary mt-3">Assesmen Nyeri</td>
             </TR>
-            <tr>
+            <tr class="text-bold">
                 <td class="text-bold">Apakah Pasien Mengeluh Nyeri</td>
                 <td colspan="4">
                     <div class="form-check form-check-inline">
@@ -257,14 +256,14 @@
                         <input class="form-check-input mr-3 nyeri_pasienbaru" type="radio" skor="2" name="nyeri_pasienbaru" id="nyeri_pasienbaru" value="Ya">
                         <label class="form-check-label" for="inlineRadio2">Ya</label>
                     </div>
-                    <input type="text" class="form-control form-control-sm" value="0" id="skalenyeripasien" name="skalenyeripasien" placeholder="skala nyeri ...">
+                    <input type="text" class="form-control form-control-md mt-2" value="0" id="skalenyeripasien" name="skalenyeripasien" placeholder="skala nyeri ...">
                     <img src="{{ asset('public/img/skalanyeri.jpg') }}" width="350px" alt="">
                 </td>
             </tr>
         </table>
-        <table class="table table-sm">
-            <thead>
-                <th colspan="2">Assement Resiko Jatuh</th>
+        <table class="table table-md text-md ">
+            <thead class="text-bold">
+                <th colspan="2">Assesmen Resiko Jatuh</th>
             </thead>
             <tbody>
                 <tr>
@@ -316,11 +315,11 @@
                 </td>
             </tr>
         </table>
-        <table class="table table-sm">
+        <table class="table table-md  text-md">
             <thead>
-                <th colspan="3">Skrinning Gizi</th>
+                <th colspan="3" class="text-bold">Skrinning Gizi</th>
                 <tr>
-                    <th colspan="3">Metode Malnutrition Screnning Tools ( Pasien Dewasa )</th>
+                    <th colspan="3" class="text-bold">Metode Malnutrition Screnning Tools ( Pasien Dewasa )</th>
                 </tr>
             </thead>
             <tbody>
@@ -341,7 +340,7 @@
                         <textarea readonly class="form-control" id="skorskrininggizi">0</textarea>
                     </td>
                 </tr>
-                <tr>
+                <tr >
                     <td colspan="2">
                         <div class="form-check form-check-inline">
                             <input skor="2" class="form-check-input ml-2 mr-3 skrininggizi_pasienbaru" type="radio" name="skrininggizi_pasienbaru" id="skrininggizi_pasienbaru" value="tidak yakin / tidak tahu">
@@ -351,7 +350,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr >
                     <td>
                         <div class="form-check form-check-inline">
                             <input skor="10" class="form-check-input ml-2 mr-3 skrininggizi_pasienbaru" type="radio" name="skrininggizi_pasienbaru" id="skrininggizi_pasienbaru" value="Ya">
@@ -390,7 +389,7 @@
                     <td colspan="3" class="text-bold">2. Apakah asupan makanan berkurang karena berkurangnya nafsu
                         makan</td>
                 </tr>
-                <tr>
+                <tr >
                     <td colspan="2">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input  ml-2 mr-1 asupanmkanan_pasienbaru" skor="0" type="radio" name="asupanmkanan_pasienbaru" id="asupanmkanan_pasienbaru" value="Tidak" checked>
@@ -401,7 +400,7 @@
                         <textarea readonly class="form-control" id="skorasupanmkanan_pasienbaru">0</textarea>
                     </td>
                 </tr>
-                <tr>
+                <tr >
                     <td colspan="2">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input  ml-2 mr-1 asupanmkanan_pasienbaru" skor="1" type="radio" name="asupanmkanan_pasienbaru" id="asupanmkanan_pasienbaru" value="Ya">
@@ -409,13 +408,13 @@
                         </div>
                     </td>
                 </tr>
-                <tr class="bg-secondary">
+                <tr class="bg-secondary text-bold">
                     <td colspan="2" class="text-center">
                         <h5>Total Skor</h5>
                     </td>
                     <td><input readonly type="text" class="form-control form-control-sm" id="totalskorgizi" name="totalskorgizi"></td>
                 </tr>
-                <tr>
+                <tr class="text-bold text-md">
                     <td colspan="2" class="text-bold">3. Pasien dengan diagnosa khusus : Penyakit DM / Ginjal /
                         Hati /
                         Paru / Stroke / Kanker
@@ -424,26 +423,26 @@
                         <textarea class="form-control form-control-sm" name="penyakitlainpasien" placeholder="sebutkan jika ada penyakit lain ....">Tidak ada</textarea>
                     </td>
                 </tr>
-                <tr>
+                <tr >
                     <td>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Tidak">
+                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Tidak" checked>
                             <label class="form-check-label" for="inlineRadio2"> Tidak </label>
                         </div>
                     </td>
                     <td colspan="2">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Ya" checked>
+                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Ya" >
                             <label class="form-check-label" for="inlineRadio2"> Ya</label>
                         </div>
                     </td>
                 </tr>
-                <tr>
+                <tr >
                     <td colspan="3" class="text-bold">Bila skor >= 2, pasien beresiko malnutrisi dilakukan
                         pengkajian
                         lanjut oleh ahli gizi</td>
                 </tr>
-                <tr>
+                <tr >
                     <td>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input  ml-2 mr-1" type="radio" name="malnutrisi_pasienbaru" id="malnutrisi_pasienbaru" value="Tidak" checked>
@@ -461,7 +460,7 @@
                         <input type="text" name="" class="form-control form-control-sm datepicker" placeholder="Tanggal pengkajian lanjut">
                     </td>
                 </tr>
-                <tr>
+                <tr class="text-bold">
                     <td colspan="3" class="text-md text-bold bg-secondary">Diagnosa Keperawatan/Kebidanan</td>
                 </tr>
                 <tr>
@@ -469,33 +468,33 @@
                         <textarea name="diagnosakeperawatan" class="form-control" placeholder="ketik diagnosa keperawatan ..."></textarea>
                     </td>
                 </tr>
-                <tr>
+                <tr class="text-bold">
                     <td colspan="3" class="text-md text-bold bg-secondary">Rencana Keperawatan/Kebidanan</td>
                 </tr>
-                <tr>
+                <tr class="text-bold">
                     <td colspan="3">
                         <textarea name="rencanakeperawatan" class="form-control" placeholder="ketik rencana keperawatan ..."></textarea>
                     </td>
                 </tr>
-                <tr>
+                <tr class="text-bold">
                     <td colspan="3" class="text-md text-bold bg-secondary">Tindakan Keperawatan/Kebidanan</td>
                 </tr>
-                <tr>
+                <tr class="text-bold">
                     <td colspan="3">
                         <textarea name="tindakankeperawatan" class="form-control" placeholder="ketik tindakan keperawatan ..."></textarea>
                     </td>
                 </tr>
-                <tr>
+                <tr class="text-bold">
                     <td colspan="3" class="text-md text-bold bg-secondary">Evaluasi Keperawatan/Kebidanan</td>
                 </tr>
-                <tr>
+                <tr class="text-bold">
                     <td colspan="3">
                         <textarea name="evaluasikeperawatan" class="form-control" placeholder="ketik evaluasi keperawatan ..."></textarea>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <table class="table table-sm text-md">
+        <table class="table text-bold table-md text-md">
             <thead>
                 <th class="text-center">Tanggal Assesmen Perawat/Bidan</th>
                 <th class="text-center">Nama Perawat/Bidan</th>

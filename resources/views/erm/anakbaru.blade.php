@@ -1,34 +1,33 @@
     <div class="card scroll">
-        <div class="card-header">
-            RM.02.01-RJ / Rev.02 / 19 Pasien Anak - anak
+        <div class="card-header text-bold">
             <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
             </button>
         </div>
         </div>
-        <form action="" class="simpanrmanak">
-            <table class="table table-sm text-xs">
-                <tr>
-                    <td>Tanggal & Jam Kunjungan</td>
+        <form action="" class=" simpanrmanak">
+            <table class="table text-md  table-md ">
+                <tr >
+                    <td class="text-bold">Tanggal & Jam Kunjungan</td>
                     <td><input readonly id="tgldanjamkunjungan_pasienanak" class="form-control form-control-sm" name="tgldanjamkunjungan_pasienanak" id="tgldanjamkunjungan_pasienanak" value="{{ $tglmasuk }}"></td>
                 </tr>
                 <tr>
-                    <td>Tanggal & Jam Pengkajian</td>
+                    <td  class="text-bold">Tanggal & Jam Pengkajian</td>
                     <td><input readonly id="tgldanjampengkajian_pasienanak" name="tgldanjampengkajian_pasienanak" class="form-control form-control-sm" value="{{ $now }}"></td>
                 </tr>
-                <tr>
-                    <td>Keluhan Utama</td>
+                <tr >
+                    <td class="text-bold">Keluhan Utama</td>
                     <td>
                         <textarea class="form-control form-control-sm" name="keluhanutama_pasienanak" id="keluhanutama_pasienanak"></textarea>
                     </td>
                 </tr>
-                <tr>
+                <tr >
                     <td colspan="4" class="text-center bg-secondary">
                         <h5>Tanda tanda Vital</h5>
                     </td>
                 </tr>
                 <tr>
-                    <td>Tekanan Darah</td>
+                    <td  class="text-bold">Tekanan Darah</td>
                     <td>
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                             <input type="text" id="tekanandarah_pasienanak" name="tekanandarah_pasienanak" class="form-control form-control-sm" />
@@ -37,7 +36,7 @@
                             </div>
                         </div>
                     </td>
-                    <td>Frekuensi Nadi</td>
+                    <td class="text-bold">Frekuensi Nadi</td>
                     <td>
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                             <input type="text" id="frekuensinadi_pasienanak" name="frekuensinadi_pasienanak" class="form-control form-control-sm" />
@@ -47,8 +46,8 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>Frekuensi Napas</td>
+                <tr >
+                    <td class="text-bold">Frekuensi Napas</td>
                     <td>
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                             <input type="text" id="frekuensinapas_pasienanak" name="frekuensinapas_pasienanak" class="form-control form-control-sm" />
@@ -57,7 +56,7 @@
                             </div>
                         </div>
                     </td>
-                    <td>Suhu</td>
+                    <td class="text-bold">Suhu</td>
                     <td>
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
                             <input type="text" id="suhu_pasienanak" name="suhu_pasienanak" class="form-control form-control-sm" />
@@ -67,14 +66,14 @@
                         </div>
                     </td>
                 </tr>
-                <TR>
+                <TR >
                     <td colspan="4" class="text-center bg-secondary mt-3">
                         <h5>Assesmen
                             Psikologi,Sosial,Ekonomi,Kultural Dan Spiritual</h5>
                     </td>
                 </TR>
                 <tr>
-                    <td>Anak Kandung</td>
+                    <td  class="text-bold">Anak Kandung</td>
                     <td colspan="4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input ml-2 mr-3" type="radio" name="anakkandung_pasienanak" id="anakkandung_pasienanak" value="Tidak">
@@ -86,8 +85,8 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>Gangguan Tumbuh Kembang</td>
+                <tr >
+                    <td class="text-bold">Gangguan Tumbuh Kembang</td>
                     <td colspan="4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input ml-2 mr-3" type="radio" name="gangguantumbuhkembang_pasienanak" id="gangguantumbuhkembang_pasienanak" value="Tidak" checked>
@@ -99,8 +98,8 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>Kekerasan Fisik</td>
+                <tr >
+                    <td class="text-bold">Kekerasan Fisik</td>
                     <td colspan="4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input ml-2 mr-3" type="radio" name="kekerasanfisik_pasienanak" id="kekerasanfisik_pasienanak" value="Tidak" checked>
@@ -112,8 +111,8 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>Tinggal Bersama</td>
+                <tr >
+                    <td class="text-bold">Tinggal Bersama</td>
                     <td colspan="4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input ml-2 mr-3" type="radio" name="tinggalbersama_pasienanak" id="tinggalbersama_pasienanak" value="Orang Tua" checked>
@@ -125,8 +124,8 @@
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <td>Pekerjaan ORang Tua</td>
+                <tr >
+                    <td class="text-bold">Pekerjaan ORang Tua</td>
                     <td colspan="4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input ml-2 mr-3" type="radio" name="pekerjaan_pasienanak" id="pekerjaan_pasienanak" value="5">
@@ -149,7 +148,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Agama Orang Tua</td>
+                    <td class="text-bold">Agama Orang Tua</td>
                     <td colspan="4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input ml-2 mr-3" type="radio" name="agama_pasienanak" id="agama_pasienanak" value="1">
@@ -180,7 +179,7 @@
                     </td>
                 </TR>
                 <tr>
-                    <td>Penggunaan Alat Bantu</td>
+                    <td class="text-bold">Penggunaan Alat Bantu</td>
                     <td colspan="4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input ml-2 mr-3" type="radio" name="alatbantu_pasienanak" id="alatbantu_pasienanak" value="Tidak" checked>
@@ -197,7 +196,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Cacat Tubuh</td>
+                    <td class="text-bold">Cacat Tubuh</td>
                     <td colspan="4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input  ml-2 mr-3 cacat_pasienanak1" skor="1" type="radio" name="cacat_pasienanak" id="cacat_pasienanak" value="Tidak" checked>
@@ -207,7 +206,7 @@
                             <input class="form-check-input  ml-2 mr-3 cacat_pasienanak1" skor="2"  type="radio" name="cacat_pasienanak" id="cacat_pasienanak" value="Ada">
                             <label class="form-check-label" for="inlineRadio1">Ada</label>
                         </div>
-                        <input type="text" class="form-control form-control-sm" id="namacacatubuh" name="namacacatubuh" placeholder="Sebutkan cacat tubuh ..." value="tidak ada">
+                        <input type="text" class="form-control form-control-sm mt-3" id="namacacatubuh" name="namacacatubuh" placeholder="Sebutkan cacat tubuh ..." value="tidak ada">
 
                     </td>
                 </tr>
@@ -218,7 +217,7 @@
                     </td>
                 </TR>
                 <tr>
-                    <td>Apakah Pasien Mengeluh Nyeri</td>
+                    <td class="text-bold">Apakah Pasien Mengeluh Nyeri</td>
                     <td colspan="4">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input ml-2 mr-3 nyeri_pasienanak" type="radio" name="nyeri_pasienanak" skor="1" id="nyeri_pasienanak" value="Tidak" checked>
@@ -227,19 +226,19 @@
                         <div class="form-check form-check-inline">
                             <input class="form-check-input mr-3 nyeri_pasienanak" type="radio" name="nyeri_pasienanak" skor="2" id="nyeri_pasienanak" value="Ya">
                             <label class="form-check-label" for="inlineRadio2">Ya</label>
-                        </div>
-                        <input type="text" id="skalanyeripasienanak" name="skalanyeripasienanak" class="form-control form-control-sm" placeholder="skala nyeri ...">
+                        </div>    
+                        <input type="text" id="skalanyeripasienanak" name="skalanyeripasienanak" class="form-control form-control-sm mt-3" placeholder="skala nyeri ...">
                         <img src="{{ asset('public/img/skalanyeri.jpg') }}" width="350px" alt="">
                     </td>
                 </tr>
             </table>
-            <table class="table table-bordered table-sm">
+            <table class="table table-bordered text-md table-md">
                 <thead>
 
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="2" class="bg-warning">Metode Wong Beker Faces Scales (pasin > 3 tahun)</td>
+                        <td colspan="2" class="bg-warning text-bold">Metode Wong Beker Faces Scales (pasin > 3 tahun)</td>
                     </tr>
                     <tr class="bg-secondary">
                         <td class="text-center">Kategori</td>
@@ -247,7 +246,7 @@
                         <td class="text-center">Nilai Score</td>
                     </tr>
                     <tr>
-                        <td> 1. Face (wajah)</td>
+                        <td class="text-bold"> 1. Face (wajah)</td>
                     </tr>
                     <tr>
                         <td>
@@ -277,7 +276,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>2. leg (posisi kaki)</td>
+                        <td class="text-bold">2. leg (posisi kaki)</td>
                     </tr>
                     <tr>
                         <td>
@@ -307,7 +306,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>3. activity</td>
+                        <td class="text-bold">3. activity</td>
                     </tr>
                     <tr>
                         <td>
@@ -338,7 +337,7 @@
                     </tr>
 
                     <tr>
-                        <td>4. Cry (menangis)</td>
+                        <td class="text-bold">4. Cry (menangis)</td>
                     </tr>
                     <tr>
                         <td>
@@ -369,7 +368,7 @@
                     </tr>
 
                     <tr>
-                        <td>5. Consolabity</td>
+                        <td class="text-bold">5. Consolabity</td>
                     </tr>
                     <tr>
                         <td>
@@ -405,7 +404,7 @@
 
                 </tbody>
             </table>
-            <table class="table table-bordered table-sm">
+            <table class="table table-bordered text-md table-md">
                 <thead>
 
                 </thead>
@@ -418,7 +417,7 @@
                         <td class="text-center">Skor Pasien</td>
                     </tr>
                     <tr>
-                        <td>1. Ekspresi wajah</td>
+                        <td class="text-bold">1. Ekspresi wajah</td>
                     </tr>
                     <tr>
                         <td>
@@ -440,7 +439,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>2. Menangis</td>
+                        <td class="text-bold">2. Menangis</td>
                     </tr>
                     <tr>
                         <td>
@@ -470,7 +469,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>3. Pola Napas</td>
+                        <td class="text-bold">3. Pola Napas</td>
                     </tr>
                     <tr>
                         <td>
@@ -492,7 +491,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>4. Lengan </td>
+                        <td class="text-bold">4. Lengan </td>
                     </tr>
                     <tr>
                         <td>
@@ -514,7 +513,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>5. kaki</td>
+                        <td class="text-bold">5. kaki</td>
                     </tr>
                     <tr>
                         <td>
@@ -536,7 +535,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>6. Terangsang</td>
+                        <td class="text-bold">6. Terangsang</td>
                     </tr>
                     <tr>
                         <td>
@@ -568,9 +567,9 @@
 
                 </tbody>
             </table>
-            <table class="table table-bordered table-sm">
+            <table class="table table-bordered text-md table-md">
                 <thead>
-                    <td class="text-center" colspan="2"><label>Asesmen Resiko Jatuh</label></td>
+                    <td class="text-center" colspan="2"><label>Assesmen Resiko Jatuh</label></td>
                 </thead>
                 <tbody>
                     <tr>
@@ -581,7 +580,7 @@
                         <td class="text-center">Nilai Skor</td>
                     </tr>
                     <tr>
-                        <td>1. Umur</td>
+                        <td class="text-bold">1. Umur</td>
                     </tr>
                     <tr>
                         <td>
@@ -619,7 +618,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>2. Jenis Kelamin</td>
+                        <td class="text-bold">2. Jenis Kelamin</td>
                     </tr>
                     <tr>
                         <td>
@@ -641,7 +640,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>3. Diagnosis</td>
+                        <td class="text-bold">3. Diagnosis</td>
                     </tr>
                     <tr>
                         <td>
@@ -679,7 +678,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>4. Gangguan Kognitif</td>
+                        <td class="text-bold">4. Gangguan Kognitif</td>
                     </tr>
                     <tr>
                         <td>
@@ -709,7 +708,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>5. Faktor Lingkungan</td>
+                        <td class="text-bold">5. Faktor Lingkungan</td>
                     </tr>
                     <tr>
                         <td>
@@ -747,7 +746,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>6. Respon terhadap operasi/obat penenang/efek anastesi</td>
+                        <td class="text-bold">6. Respon terhadap operasi/obat penenang/efek anastesi</td>
                     </tr>
                     <tr>
                         <td>
@@ -777,7 +776,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>7. Penggunaan obat</td>
+                        <td class="text-bold">7. Penggunaan obat</td>
                     </tr>
                     <tr>
                         <td>
@@ -813,14 +812,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Total skor</td>
+                        <td class="text-bold">Total skor</td>
                         <td rowspan="3">
                             <textarea readonly class="form-control" name="totalskor" id="totalskor"></textarea>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <table class="table table-sm text-md">
+            <table class="table table-md text-md">
                 <thead>
                     <th class="text-center">Tanggal Assesmen Perawat</th>
                     <th class="text-center">Nama Perawat</th>

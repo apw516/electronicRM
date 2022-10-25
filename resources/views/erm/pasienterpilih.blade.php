@@ -14,8 +14,8 @@
                 @endif
             </div>
         </div>
-        <div class="col-md-8">
-            <table class="table table-sm table-striped table-hover shadow-sm table-bordered">
+        <div class="col-md-8 ">
+            <table class="table text-bold table-md table-striped table-hover shadow-sm table-bordered">
                 <thead class="bg-info">
                     <th>Nomor RM</th>
                     <th>Nama</th>
@@ -42,22 +42,22 @@
         </div>
     </div>
 
-    <div class="card-header p-2">
-        <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Riwayat Pelayanan / Tindakan
+    <div class="card-header text-bold p-2">
+        <ul class="nav nav-pills ">
+            <li class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Riwayat Pelayanan / Tindakan
                     Medis</a>
             </li>
             <li class="nav-item"><a class="nav-link tampilcppt" href="#cppt" data-toggle="tab" nomorrm="{{ $rm }}">CPPT</a></li>
-            <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">E - Form</a></li>
+            <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">E - Form</a></li>
             <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis</a></li>
            {{-- <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis & Order
-                    Layanan</a></li>--}}
-            <li class="nav-item"><a class="nav-link tampilresume" href="#resumemedis" data-toggle="tab" nomorrm="{{ $rm }}">Resume Medis</a></li>
+                    Layanan</a></li>
+            <li class="nav-item"><a class="nav-link tampilresume" href="#resumemedis" data-toggle="tab" nomorrm="{{ $rm }}">Resume Medis</a></li>--}}
         </ul>
     </div>
     <div class="card-body ">
         <div class="tab-content">
-            <div class="active tab-pane" id="activity">
+            <div class=" tab-pane" id="activity">
                 <div class="post">
                     @foreach ($periode as $p)
                     <div class="card card-light collapsed-card">
@@ -74,7 +74,7 @@
                         <!-- /.card-header -->
                         <div class="card-body scroll2">
                             <H5 class="text-bold text-danger">Riwayat Pelayanan / Tindakan Medis</H5>
-                            <table class="table table-sm">
+                            <table class="table text-bold table-md">
                                 <thead>
                                     <th>TGL MASUK</th>
                                     <th>TGL KELUAR</th>
@@ -147,9 +147,9 @@
                 <div class="viewresume">
                 </div>
             </div>
-            <div class="tab-pane" id="timeline">
-                <div class="form-group">
-                    <select class="custom-select form-control-border text-xs" id="jenisform" onchange="gantiform()">
+            <div class="tab-pane active" id="timeline">
+                <div class="form-group ">
+                    <select class="custom-select form-control-border text-bold" id="jenisform" onchange="gantiform()">
                         <!-- <option>--- Silahkan Pilih Jenis Form ---</option> -->
                         <option value="">-- Pilih Form --</option>
                         <!-- <option value="2">RM.02.01-RJ / Pasien Lama ( dewasa )</option> -->

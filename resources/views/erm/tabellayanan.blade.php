@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-4">
-        <table id="tabellayanan" class="table table-sm table-hover table-stripped">
+        <table id="tabellayanan" class="table table-md text-bold table-hover table-stripped">
             <thead class="bg-info">
                 <th>kode</th>
                 <th>tindakan</th>

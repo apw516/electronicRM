@@ -3,7 +3,7 @@
 <div class="container-fluid" style="margin-top:130px">
         <div id="tabelpasien" class="container" >
             <p class="text-lg text-bold">Data Pasien</p>
-            <table id="datapasien" class="table table-sm text-xs table-bordered table-hover">
+            <table id="datapasien" class="table text-bold table-md text-xs table-bordered table-hover">
                 <thead>
                     <th hidden>Kode kunjungan</th>
                     <th>Tanggal Masuk</th>

@@ -1,5 +1,5 @@
 <div class="card scroll">
-    <div class="card-header">CATATAN PERKEMBANGAN PASIEN TERINTEGRASI ( CPPT )
+    <div class="card-header text-bold">CATATAN PERKEMBANGAN PASIEN TERINTEGRASI ( CPPT )
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
             </button>
@@ -7,14 +7,14 @@
     </div>
 
     
-                <table class="table table-md table-bordered ">
+                <table class="table table-md text-md table-bordered ">
                     <thead class="bg-warning">
-                        <th>Tanggal / Jam</th>
-                        <th>Profesi</th>
+                        <th>Tanggal / Jam Assesmen Perawat/Bidan</th>
+                        <th >Profesi</th>
                         <th class="text-center">Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ( Ditulis dengan format SOAP, disertai target yang terukur, evaluasi hasil, tata laksana dituliskan dalam assesmen.</th>
-                        <th>Tanggal / Jam</th>
-                        <th width="800px">Profesi</th>
-                        <th class="text-center">Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ( Ditulis dengan format SOAP, disertai target yang terukur, evaluasi hasil, tata laksana dituliskan dalam assesmen.</th>
+                        <th>Tanggal / Jam Assesmen DPJP</th>
+                        <th width="800px">DPJP</th>
+                        <th class="text-center">Intruksi tenaga kesehatan termasuk Pascaa Bedah/Prosedur (Intruksi ditulis dengan rinci dan jelas</th>
 
                     </thead>
                     <tbody>
@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
                                 <div class="card">
-                                    <div class="card-header">Tanda tangan perawat</div>
+                                    <div class="card-header text-bold">Tanda tangan perawat</div>
                                     <div class="card-body">
 
                                         <img src="<?php echo e($d->ttd_perawat); ?>" alt=""> <br>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">Tanda tangan Dokter</div>
+                    <div class="card-header text-bold">Tanda tangan Dokter</div>
                     <div class="card-body">
 
                         <img src="<?php echo e($d->signature); ?>" alt=""> <br>

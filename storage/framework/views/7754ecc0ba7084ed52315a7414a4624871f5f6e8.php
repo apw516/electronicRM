@@ -50,6 +50,10 @@
                         <td class="text-bold">Ringkasan Riwayat Penyakit</td>
                         <td><?php echo e($d->nama_pasien); ?></td>
                     </tr>
+                    <tr>
+                        <td class="text-bold">Ringkasan Riwayat Penyakit</td>
+                        <td><?php echo e($d->nama_pasien); ?></td>
+                    </tr>
 
 
                     </tbody>
