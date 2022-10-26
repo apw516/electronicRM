@@ -40,6 +40,7 @@
                 class="table table-md text-md table-striped table-hover shadow-sm table-bordered">
                 <thead class="bg-info">
                     <th>Nomor RM</th>
+                    <th>Kelas</th>
                     <th>Nama</th>
                     <th>Umur</th>
                     <th>Alamat</th>
@@ -47,6 +48,7 @@
                 <tbody>
                     <tr>
                         <td><?php echo e($rm); ?></td>
+                        <td><?php echo e($kelas); ?></td>
                         <td><?php echo e($nama); ?></td>
                         <td><?php echo e($umur); ?> Tahun</td>
                         <td><?php echo e($alamat); ?></td>

@@ -775,6 +775,7 @@
             unit = $('#unit').val()
             umur = $('#umur').val()
             alamat = $('#alamat').val()
+            kelas = $('#kelas').val()
             $.ajax({
                 async: true,
                 type: 'post',
@@ -790,6 +791,7 @@
                     unit,
                     umur,
                     alamat,
+                    kelas
                 },
                 url: '<?= route('simpanradiologi') ?>',
                 error: function(data) {
@@ -815,7 +817,7 @@
                         Swal.fire({
                             icon: 'success',
                             title: 'ok',
-                            text: 'Data berhasil disimpan!',
+                            text: data.message,
                             footer: ''
                         })
                     }

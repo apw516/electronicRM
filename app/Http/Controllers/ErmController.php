@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\mt_kode_header;
+use App\Models\erm_order_header;
+use App\Models\erm_order_detail;
 use App\Models\assesmenawal;
 use App\Models\assemenawalmedis;
 
@@ -373,6 +376,8 @@ class ErmController extends BaseController
         $alamat = $request->alamat;
         $new_array = array();
         $keterangan = array();
+        $date = Carbon::now()->timezone('Asia/Jakarta');
+        $now = $date->toDateTimeString();
         foreach ($data as $nama) {
             $index = $nama['name'];
             $value = $nama['value'];
@@ -402,7 +407,43 @@ class ErmController extends BaseController
             echo json_encode($data);
             die;
         }else{
-            
+              //insert order header
+              $kode_h = 'ORL';
+              $id_header = $this->createOrderHeader($kode_h);
+              $save_header = [
+                  'kode_header' => $id_header,
+                  'tgl_header'=> $now
+              ];
+              mt_kode_header::create($save_header);
+              $total = count($new_array2);
+              $data_header = [
+                  'tgl_input' => $now ,
+                  'kode_order_header' => $id_header,
+                  'tujuan_unit' => '3003',
+                  'asal_unit' => auth()->user()->unit. ' | '. $unit .' | '. $request->kelas,
+                  'no_rm' => $rm,
+                  'kode_kunjungan' => $kodekunjungan,
+                  'diagnosa' => $request->diagnosa,
+                  'Dokter_pengirim'=> auth()->user()->kode_dpjp,
+                  'jml_layanan' => $total,
+                  'pic1' => auth()->user()->kode_dpjp,
+              ];
+              $hed = erm_order_header::create($data_header);
+              foreach($new_array2 as $da){
+                  $data =  $da['order']['order'];    
+                  $whatIWant = str_replace(' ', '',substr($data, strpos($data, "|") + 1));  
+                  $data_detail = [
+                      'id_orderhed' => $hed->id,
+                      'id_array' => $whatIWant
+                  ];
+                  erm_order_detail::create($data_detail);
+              }
+              $data = [
+                  'kode' => 200,
+                  'message' => 'Layanan berhasil dikirim ...'
+              ];
+              echo json_encode($data);
+              die;
         }
     }
     public function simpanradiologi(Request $request)
@@ -417,6 +458,8 @@ class ErmController extends BaseController
         $alamat = $request->alamat;
         $new_array = array();
         $keterangan = array();
+        $date = Carbon::now()->timezone('Asia/Jakarta');
+        $now = $date->toDateTimeString();
         foreach ($data as $nama) {
             $index = $nama['name'];
             $value = $nama['value'];
@@ -450,7 +493,6 @@ class ErmController extends BaseController
                 $new_array2[] = array('order' => $dataa);
             }
         }
-        dd($new_array2);
         if(count($new_array2) == 0){
             $data = [
                 'kode' => 500,
@@ -459,10 +501,62 @@ class ErmController extends BaseController
             echo json_encode($data);
             die;
         }else{
-            
+            //insert order header
+            $kode_h = 'ORR';
+            $id_header = $this->createOrderHeader($kode_h);
+            $save_header = [
+                'kode_header' => $id_header,
+                'tgl_header'=> $now
+            ];
+            mt_kode_header::create($save_header);
+            $total = count($new_array2);
+            $data_header = [
+                'tgl_input' => $now ,
+                'kode_order_header' => $id_header,
+                'tujuan_unit' => '3003',
+                'asal_unit' => auth()->user()->unit. ' | '. $unit .' | '. $request->kelas,
+                'no_rm' => $rm,
+                'kode_kunjungan' => $kodekunjungan,
+                'diagnosa' => $request->diagnosa,
+                'Dokter_pengirim'=> auth()->user()->kode_dpjp,
+                'jml_layanan' => $total,
+                'pic1' => auth()->user()->kode_dpjp,
+            ];
+            $hed = erm_order_header::create($data_header);
+            foreach($new_array2 as $da){
+                $data =  $da['order']['order'];    
+                $whatIWant = str_replace(' ', '',substr($data, strpos($data, "|") + 1));  
+                $data_detail = [
+                    'id_orderhed' => $hed->id,
+                    'id_array' => $whatIWant
+                ];
+                erm_order_detail::create($data_detail);
+            }
+            $data = [
+                'kode' => 200,
+                'message' => 'Layanan berhasil dikirim ...'
+            ];
+            echo json_encode($data);
+            die;
+        }        
+    }
+    public function createOrderHeader($unit)
+    {
+        $q = DB::select('SELECT id,kode_header,RIGHT(kode_header,6) AS kd_max  FROM mt_kode_order_header 
+        WHERE DATE(tgl_header) = CURDATE()
+        ORDER BY id DESC
+        LIMIT 1');
+        $kd = "";
+        if (count($q) > 0) {
+            foreach ($q as $k) {
+                $tmp = ((int) $k->kd_max) + 1;
+                $kd = sprintf("%06s", $tmp);
+            }
+        } else {
+            $kd = "000001";
         }
-
-        
+        date_default_timezone_set('Asia/Jakarta');
+        return $unit . date('ymd') . $kd;
     }
     public function simpanlayanan(Request $request)
     {

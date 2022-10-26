@@ -40,6 +40,7 @@
                 class="table table-md text-md table-striped table-hover shadow-sm table-bordered">
                 <thead class="bg-info">
                     <th>Nomor RM</th>
+                    <th>Kelas</th>
                     <th>Nama</th>
                     <th>Umur</th>
                     <th>Alamat</th>
@@ -47,6 +48,7 @@
                 <tbody>
                     <tr>
                         <td>{{ $rm }}</td>
+                        <td>{{ $kelas }}</td>
                         <td>{{ $nama }}</td>
                         <td>{{ $umur }} Tahun</td>
                         <td>{{ $alamat }}</td>
