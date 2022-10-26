@@ -6,26 +6,26 @@
                         class="bi bi-backspace mr-2"></i>Kembali</button>
             </h2>
         </div>
-        
+
         <div class="col-md-3">
             <div class="card">
                 <div class="card-success card-outline">
-                    <table class="table table-sm">
+                    <table style="font-family:calibri" class="table table-sm text-md">
                         <tr>
                             <td>Frekuensi nafas</td>
                             <td>{{ $ass_per[0]->ttv_freq_napas }} / menit</td>
                         </tr>
                         <tr>
                             <td>Tekanan darah</td>
-                            <td>{{ $ass_per[0]->ttv_tekanan_darah }}</td>
+                            <td>{{ $ass_per[0]->ttv_tekanan_darah }} mmHG</td>
                         </tr>
                         <tr>
                             <td>Frekuensi nadi</td>
-                            <td>{{ $ass_per[0]->ttv_freq_nadi }}</td>
+                            <td>{{ $ass_per[0]->ttv_freq_nadi }}x/menit</td>
                         </tr>
                         <tr>
-                            <td>Riwayat Psikologis</td>
-                            <td>{{ $ass_per[0]->riwayat_Psikologis }}</td>
+                            <td>Suhu</td>
+                            <td>{{ $ass_per[0]->ttv_suhu }} °C</td>
                         </tr>
                         <tr>
                             <td>Keluhan Utama</td>
@@ -36,7 +36,8 @@
             </div>
         </div>
         <div class="col-md-8">
-            <table class="table table-sm table-striped table-hover shadow-sm table-bordered">
+            <table style="font-family:calibri"
+                class="table table-md text-md table-striped table-hover shadow-sm table-bordered">
                 <thead class="bg-info">
                     <th>Nomor RM</th>
                     <th>Nama</th>
@@ -64,161 +65,111 @@
             </table>
         </div>
     </div>
-    
-     <div class="card-header p-2 bg-warning">
-    <ul class="nav nav-pills text-md text-light">
-        <li class="nav-item"><a class="nav-link active text-dark text-bold" href="#activity" data-toggle="tab">Riwayat Pelayanan / Tindakan
-                Medis</a>
-        </li>
-        <li class="nav-item"><a class="nav-link tampilcppt text-dark text-bold" href="#cppt" data-toggle="tab"
-                nomorrm="{{ $rm }}">CPPT</a></li>
-        <li class="nav-item"><a class="nav-link text-dark text-bold" href="#timeline" data-toggle="tab">E - Form</a></li>
-       <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis</a></li>
-       {{-- <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis & Order
-                Layanan</a></li>--}}
-                <li class="nav-item"><a class="nav-link tampilresume" href="#resumemedis" data-toggle="tab" nomorrm="{{ $rm }}">Resume Medis</a></li>
-    </ul>
-</div>
-<div class="card-body scroll">
-    <div class="tab-content">
-        <div class="active tab-pane" id="activity">
-            <div class="post">
-                @foreach ($periode as $p)
-                    <div class="card card-light collapsed-card">
-                        <div class="card-header">
-                            <h3 class="card-title">{{ $p->tgl_masuk }}</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                        class="fas fa-plus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i
-                                        class="fas fa-expand"></i>
-                                </button>
-                            </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body scroll2">
-                            <H5 class="text-bold text-danger">Riwayat Pelayanan / Tindakan Medis</H5>
-                            <table class="table table-sm">
-                                <thead>
-                                    <th>TGL MASUK</th>
-                                    <th>TGL KELUAR</th>
-                                    <th>COUNTER</th>
-                                    <th>NAMA PASIEN</th>
-                                    <th>NAMA TARIF</th>
-                                    <th>PENJAMIN</th>
-                                    <th>PELAYANAN</th>
-                                    <th>UNIT</th>
-                                    <th>DOKTER</th>
-                                </thead>
-                                <tbody>
-                                    @foreach ($kunjungan as $r)
-                                        @if ($p->tgl_masuk == $r->TGL_MASUK)
-                                            <tr>
-                                                <td>{{ $r->TGL_MASUK }}</td>
-                                                <td>{{ $r->TGL_KELUAR }}</td>
-                                                <td>{{ $r->KONTER }}</td>
-                                                <td>{{ $r->NAMA_PX }}</td>
-                                                <td>{{ $r->NAMA_TARIF }}</td>
-                                                <td>{{ $r->PENJAMIN }}</td>
-                                                <td>{{ $r->SEQ_1 }}</td>
-                                                <td>{{ $r->NAMA_UNIT }}</td>
-                                                <td>{{ $r->NAMA_PARAMEDIS }}</td>
-                                            </tr>
-                                        @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                @endforeach
-            </div>
-        </div>
-        <!-- /.tab-pane -->
-        <div class="tab-pane" id="cppt">
-            <div class="viewcppt">
-            </div>
-        </div>
-        <div class="tab-pane" id="resumemedis">
-                <div class="viewresume">
-                </div>
-            </div>
-        <div class="tab-pane" id="timeline">
-            <div class="form-group">
-                <select class="custom-select form-control-border text-xs" id="jenisform" onchange="gantiform()">
-                    <!-- <option>--- Silahkan Pilih Jenis Form ---</option> -->
-                    <option value="">-- Pilih Form --</option>
-                    <option value="3">RM.03.01-RJ (ASSESMEN AWAL MEDIS )</option>
-                    <option value="radiologi">Form Order Radiologi</option>
-                    <option value="laboratorium">Form Order Laboratorium</option>
-                </select>
-            </div>
-            <div class="viewform">
-                <h5 class="text-danger">Tidak ada form yang dipilih ...</h5>
-            </div>
-        </div>
-        <!-- /.tab-pane -->
 
-        <div class="tab-pane" id="settings">
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="card mt-3">
-                        <div class="card-header bg-info">Silahkan Pilih Tindakan</div>
-                        <div class="card-body scroll">
-                            <table id="tabeltindakan" class="table table-sm table-bordered table-hover text-xs">
-                                <thead>
-                                    <th>Nama tindakan</th>
-                                    <th>Tarif</th>
-                                </thead>
-                                <tbody class="scroll">
-                                    @foreach ($tarif as $t)
-                                        <tr class="pilihtindakan" namatindakan="{{ $t->Tindakan }}"
-                                            tarif="{{ $t->tarif }}" kode="{{ $t->kode }}">
-                                            <td>{{ $t->Tindakan }}</td>
-                                            <td> RP. {{ $t->tarif }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <div class="card">
-                        <div class="card-header bg-success">Tindakan / Layanan Pasien</div>
-                    </div>
-                    <div class="card-body">
-                        <form action="" method="post" class="formtindakan">
-                            <div class="input_fields_wrap">
-                                <div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Pilih dokter</label>
-                                    <select class="form-control" id="dokterpemeriksa">
-                                        @foreach ($dokter as $d)
-                                            <option value="{{ $d->kode_dokter }}">{{ $d->nama_dokter }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                <button type="button" class="btn btn-warning mb-2 simpanlayanan"
-                                    id="simpanlayanan">Simpan Tindakan</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card-footer">
-                        <p>pilih layanan untuk pasien</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.tab-pane -->
+    <div style="font-family:calibri" class="card-header p-2 bg-bg-light">
+        <ul class="nav nav-pills text-md text-light">
+            <li class="nav-item"><a class="nav-link text-bold tampilriwayat" href="#activity"
+                    nomorrm="{{ $rm }}" data-toggle="tab">Riwayat Pelayanan / Tindakan
+                    Medis</a>
+            </li>
+            <li class="nav-item"><a class="nav-link tampilcppt text-bold" href="#cppt" data-toggle="tab"
+                    nomorrm="{{ $rm }}">CPPT</a></li>
+            <li class="nav-item"><a class="nav-link  active text-bold" href="#timeline" data-toggle="tab">E - Form</a></li>
+            <li class="nav-item"><a class="nav-link text-bold" href="#settings" data-toggle="tab">Tindakan Medis</a>
+            </li>
+            {{-- <li class="nav-item"><a class="nav-link text-dark text-bold" href="#settings" data-toggle="tab">Tindakan Medis & Order
+                Layanan</a></li> --}}
+        </ul>
     </div>
-    <!-- /.tab-content -->
-</div><!-- /.card-body -->
+    <div style="font-family:calibri" class="card-body scroll">
+        <div class="tab-content">
+            <div class=" tab-pane" id="activity">
+                <div class="post">
+                    <div class="tampilriwayatlayan">
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.tab-pane -->
+            <div class="tab-pane" id="cppt">
+                <div class="viewcppt">
+                </div>
+            </div>
+            <div class="tab-pane active" id="timeline">
+                <div style="font-family:calibri" class="form-group">
+                    <select style="font-family:calibri" class="custom-select form-control-border text-md" id="jenisform"
+                        onchange="gantiform()">
+                        <!-- <option>--- Silahkan Pilih Jenis Form ---</option> -->
+                        <option value="">-- Pilih Form --</option>
+                        <option value="3">RM.03.01-RJ (ASSESMEN AWAL MEDIS )</option>
+                        <option value="radiologi">Form Order Radiologi</option>
+                        <option value="laboratorium">Form Order Laboratorium</option>
+                    </select>
+                </div>
+                <div class="viewform">
+                    <h5 class="text-danger">Tidak ada form yang dipilih ...</h5>
+                </div>
+            </div>
+            <!-- /.tab-pane -->
+
+            <div class="tab-pane" id="settings">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card mt-3">
+                            <div class="card-header bg-info">Silahkan Pilih Tindakan</div>
+                            <div class="card-body scroll">
+                                <table id="tabeltindakan" class="table table-sm table-bordered table-hover text-xs">
+                                    <thead>
+                                        <th>Nama tindakan</th>
+                                        <th>Tarif</th>
+                                    </thead>
+                                    <tbody class="scroll">
+                                        @foreach ($tarif as $t)
+                                            <tr class="pilihtindakan" namatindakan="{{ $t->Tindakan }}"
+                                                tarif="{{ $t->tarif }}" kode="{{ $t->kode }}">
+                                                <td>{{ $t->Tindakan }}</td>
+                                                <td> RP. {{ $t->tarif }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card">
+                            <div class="card-header bg-success">Tindakan / Layanan Pasien</div>
+                        </div>
+                        <div class="card-body">
+                            <form action="" method="post" class="formtindakan">
+                                <div class="input_fields_wrap">
+                                    <div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlSelect1">Pilih dokter</label>
+                                        <select class="form-control" id="dokterpemeriksa">
+                                            @foreach ($dokter as $d)
+                                                <option value="{{ $d->kode_dokter }}">{{ $d->nama_dokter }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <button type="button" class="btn btn-warning mb-2 simpanlayanan"
+                                        id="simpanlayanan">Simpan Tindakan</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer">
+                            <p>pilih layanan untuk pasien</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+    </div><!-- /.card-body -->
 </div>
 <script>
     $(function() {
@@ -241,9 +192,8 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         });
     });
-
     function gantiform() {
-        spinner = $('#loader');
+        spinner = $('#loader2');
         spinner.show();
         id = $('#jenisform').val()
         tglmasuk = $('#tglmasuk').val()
@@ -284,50 +234,52 @@
         spinner = $('#loader2');
         spinner.show();
         $.ajax({
-                type: 'post',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    nomorrm
-                },
-                url: '<?= route('tampilcppt2') ?>',
-                error: function(data) {
-                    spinner.hide();
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Sepertinya ada masalah ...',
-                        footer: ''
-                    })
-                },
-                success: function(response) {
-                    spinner.hide();
-                    $('.viewcppt').html(response)
-                }
-            });
+            type: 'post',
+            data: {
+                _token: "{{ csrf_token() }}",
+                nomorrm
+            },
+            url: '<?= route('tampilcppt2') ?>',
+            error: function(data) {
+                spinner.hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Sepertinya ada masalah ...',
+                    footer: ''
+                })
+            },
+            success: function(response) {
+                spinner.hide();
+                $('.viewcppt').html(response)
+            }
+        });
     });
-    $(".tampilresume").click(function() {
+    $(".tampilriwayat").click(function() {
         nomorrm = $(this).attr('nomorrm')
+        counter = $('#cek_counter').val()
         spinner = $('#loader2');
         spinner.show();
         $.ajax({
             type: 'post',
             data: {
                 _token: "{{ csrf_token() }}",
-                nomorrm
+                nomorrm,
+                counter
             },
-            url: '<?= route('tampilresume2') ?>',
+            url: '<?= route('tampilriwayat') ?>',
             error: function(data) {
                 spinner.hide();
                 Swal.fire({
                     icon: 'error',
-                    title: 'Ooopss....',
-                    text: 'Sepreti ada masalah ...',
+                    title: 'Oops...',
+                    text: 'Sepertinya ada masalah ...',
                     footer: ''
                 })
             },
             success: function(response) {
                 spinner.hide();
-                $('.viewresume').html(response)
+                $('.tampilriwayatlayan').html(response)
             }
         });
     });
@@ -376,8 +328,6 @@
             })
         }
     });
-
-
     $(document).ready(function() {
         $(".simpanlayanan").click(function() {
             var data = $('.formtindakan').serializeArray();

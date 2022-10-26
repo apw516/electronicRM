@@ -19,6 +19,6 @@ class hak_akses
         if(in_array($request->user()->hak_akses,$hak_akses)){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/logout');
     }
 }

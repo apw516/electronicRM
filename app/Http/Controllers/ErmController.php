@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use App\Models\mt_kode_header;
+use App\Models\erm_order_header;
+use App\Models\erm_order_detail;
 use App\Models\assesmenawal;
 use App\Models\assemenawalmedis;
 
@@ -14,14 +17,18 @@ use App\Models\assemenawalmedis;
 class ErmController extends BaseController
 {
     public function index()
-    {
+    {   
+        return view('erm.index', [
+            'menu' => 2,
+            'title' => 'Semerusmart | E-RM',
+        ]);
+    }
+    public function ambildatapasien(){
         $unit = auth()->user()->unit;
         $pasien_poli = DB::select('select a.kode_kunjungan,fc_nama_px(a.no_rm) as nama,a.no_rm,fc_umur(a.no_rm) as umur, fc_alamat4(a.no_rm) as alamat , fc_nama_unit1(a.kode_unit) as unit,a.tgl_masuk, a.kelas, a.counter, b.kode_kunjungan as kj 
         ,fc_nama_unit1(a.ref_unit) as asalunit from ts_kunjungan a
         left outer join erm_assesmen_keperawatan_rajal b on b.kode_kunjungan = a.kode_kunjungan where a.kode_unit = ? and a.status_kunjungan = ?', [$unit, 1]);
-        return view('erm.index', [
-            'menu' => 2,
-            'title' => 'Semerusmart | E-RM',
+        return view('erm.datapasien', [
             'pasien' => $pasien_poli
         ]);
     }
@@ -37,32 +44,30 @@ class ErmController extends BaseController
             echo json_encode($arr_result);
         }
     }
-    public function tampildatapasien(){
-        $unit = auth()->user()->unit;
-        $pasien_poli = DB::select('select a.kode_kunjungan,fc_nama_px(a.no_rm) as nama,a.no_rm,fc_umur(a.no_rm) as umur, fc_alamat4(a.no_rm) as alamat , fc_nama_unit1(a.kode_unit) as unit,a.tgl_masuk, a.kelas, a.counter, b.kode_kunjungan as kj 
-        ,fc_nama_unit1(a.ref_unit) as asalunit from ts_kunjungan a
-        left outer join erm_assesmen_keperawatan_rajal b on b.kode_kunjungan = a.kode_kunjungan where a.kode_unit = ? and a.status_kunjungan = ?', [$unit, 1]);
-        return view('erm.tabeldatapasien', [
-            'menu' => 2,
-            'title' => 'Semerusmart | E-RM',
-            'pasien' => $pasien_poli
-        ]);
-    }
     public function tampilcppt(Request $request)
     {
         return view('erm.cppt', [
-            'ass_kep' =>  DB::select('SELECT *, b.`keluhan_utama`AS keluhan_utamadokter, fc_nama_dpjp(b.dpjp) as nama_dokter, a.`keluhan_utama`AS keluhan_utamaperawat FROM `erm_assesmen_keperawatan_rajal` a LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.kode_kunjungan = a.kode_kunjungan WHERE a.no_rm = ? ORDER BY a.idx desc',[$request->nomorrm])
+            'ass_kep' =>  DB::select('SELECT *,b.kode_kunjungan AS kunjungan_2 ,a.sumber_data AS sumber_data_askep,b.sumber_data AS sumber_data_asmed, b.`keluhan_utama`AS keluhan_utamadokter, fc_nama_dpjp(b.dpjp) as nama_dokter, a.`keluhan_utama`AS keluhan_utamaperawat FROM `erm_assesmen_keperawatan_rajal` a LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.no_rm = a.no_rm WHERE a.no_rm = ?', [$request->nomorrm])
         ]);
     }
-    public function tampilresume(Request $request){
-        
-        return view('erm.resumemedis', [
-            'ass_kep' =>  DB::select('SELECT *, b.`keluhan_utama`AS keluhan_utamadokter, fc_nama_dpjp(b.dpjp) AS nama_dokter,  
-            a.`keluhan_utama`AS keluhan_utamaperawat, fc_nama_px(a.`no_rm`) AS nama_pasien 
-            FROM `erm_assesmen_keperawatan_rajal` a
-            LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.kode_kunjungan = a.kode_kunjungan WHERE a.no_rm = ? ORDER BY a.idx desc',[$request->nomorrm])
+    public function tampilriwayat(Request $request)
+    {
+        $periode = DB::select('SELECT DISTINCT DATE(tgl_masuk) as tgl_masuk from ts_kunjungan where no_rm = ? ORDER BY tgl_masuk desc', [$request->nomorrm]);
+        $COUNTER = DB::select('SELECT DISTINCT counter from ts_kunjungan where no_rm = ?', [$request->nomorrm]);
+        $all_licencies = collect();
+        foreach ($COUNTER as $key => $column) {
+            $layanan = DB::select("CALL RINCIAN_BIAYA_FINAL('$request->nomorrm','$column->counter','1','1')");
+            $all_licencies = $all_licencies->merge($layanan);
+        }
+        $periode = DB::select('SELECT DATE(ts_kunjungan.tgl_masuk) AS tanggal_masuk FROM ts_kunjungan 
+        LEFT OUTER JOIN ts_layanan_header ON ts_kunjungan.kode_kunjungan = ts_layanan_header.kode_kunjungan
+        LEFT OUTER JOIN ts_layanan_detail ON ts_layanan_header.id = ts_layanan_detail.row_id_header
+        WHERE no_rm = ? GROUP BY ts_kunjungan.tgl_masuk DESC', [$request->nomorrm]);
+        // dd($periode);
+        return view('erm.riwayatpelayanan', [
+            'kunjungan' => $all_licencies,
+            'periode' => $periode,
         ]);
-
     }
     public function formpasien(request $request)
     {
@@ -76,38 +81,16 @@ class ErmController extends BaseController
         $umur = $request->umur;
         $tglmasuk = $request->tglmasuk;
         $kelas = $request->kelas;
-        $periode = DB::select('SELECT DISTINCT DATE(tgl_masuk) as tgl_masuk from ts_kunjungan where no_rm = ? ORDER BY tgl_masuk desc', [$nomorrm]);
-        $COUNTER = DB::select('SELECT DISTINCT counter from ts_kunjungan where no_rm = ?', [$nomorrm]);
-        $dokter = DB::select('SELECT * from mt_kuota_dokter_poli where kode_poli = ?', [$unit_log]);
-        $all_licencies = collect();
-        foreach ($COUNTER as $key => $column) {
-            $layanan = DB::select("CALL RINCIAN_BIAYA_FINAL('$nomorrm','$column->counter','1','1')");
-            $all_licencies = $all_licencies->merge($layanan);
-        }
-        if ($kelas == '') {
-            $kelas = 3;
-        }
-        $tarif = DB::select("CALL SP_PANGGIL_TARIF_TINDAKAN_RS('$kelas','','1008')");
-        // $periode = DB::select('SELECT DATE(ts_kunjungan.tgl_masuk) AS tanggal_masuk FROM ts_kunjungan 
-        // LEFT OUTER JOIN ts_layanan_header ON ts_kunjungan.kode_kunjungan = ts_layanan_header.kode_kunjungan
-        // LEFT OUTER JOIN ts_layanan_detail ON ts_layanan_header.id = ts_layanan_detail.row_id_header
-        // WHERE no_rm = ? GROUP BY ts_kunjungan.tgl_masuk DESC',[$nomorrm]);
-
-        //query aambil riwayat medis
         return view('erm.pasienterpilih', [
             'rm' => $nomorrm,
-            'dokter' => $dokter,
             'kelas' => $kelas,
             'nama' =>  $nama,
             'alamat' => $alamat,
             'tglmasuk' => $tglmasuk,
             'kodekunjungan' => $kodekunjungan,
-            'kunjungan' => $all_licencies,
-            'periode' => $periode,
             'umur' => $umur,
             'counter' => $counter,
             'unit' => $unit,
-            'tarif' => $tarif
         ]);
     }
     public function pilihform(request $request)
@@ -138,7 +121,6 @@ class ErmController extends BaseController
                 'tglmasuk' => $tglmasuk
             ]);
         } else if ($id == 'radiologi') {
-
             return view('erm.formradiologi', [
                 'rm' => $nomorrm,
                 'tglmasuk' => $tglmasuk,
@@ -164,7 +146,6 @@ class ErmController extends BaseController
             ]);
         }
     }
-
     public function carilayanan(request $request)
     {
         $layanan = $request->layanan;
@@ -393,36 +374,77 @@ class ErmController extends BaseController
         $unit = $request->unit;
         $umur = $request->umur;
         $alamat = $request->alamat;
-        $dataSet['rm'] = $rm;
-        $dataSet['kodekunjungan'] = $kodekunjungan;
-        $dataSet['tanggalmasuk'] = $tglmasuk;
-        $dataSet['nama'] = $namapasien;
-        $dataSet['unit'] = $unit;
-        $dataSet['umur'] = $umur;
-        $dataSet['alamat'] = $alamat;
+        $new_array = array();
+        $keterangan = array();
+        $date = Carbon::now()->timezone('Asia/Jakarta');
+        $now = $date->toDateTimeString();
         foreach ($data as $nama) {
             $index = $nama['name'];
             $value = $nama['value'];
-            $dataSet[$index] = $value;
-            if ($value == '') {
-                $data = [
-                    'kode' => 500,
-                    'message' => $index . 'Belum diisi.....'
-                ];
-                echo json_encode($data);
-                die;
+            // $dataSet[$index] = $value;
+            if ($index != 'rm' && $index != 'dokter' && $index != 'tglmasuk' && $index != 'unit' && $index != 'nama'  && $index != 'umur'  && $index != 'jk'  && $index != 'alamat') {              
+                    $new_array[] = array('order' => $value);
             }
         }
-
-        $data = [
-            'kode_kunjungan' => $dataSet['kodekunjungan']
-        ];
-        $data = [
-            'kode' => 200,
-            'message' => ''
-        ];
-        echo json_encode($data);
-        die;
+        $new_array2 = array();
+        foreach ($new_array as $d) {
+                $dataa = [
+                    'kodekunjungan' => $kodekunjungan,
+                    'diagnosa' => $request->diagnosa,
+                    'rm' => $rm,
+                    'nama' => $namapasien,
+                    'tglmasuk' => $tglmasuk,
+                    'unit' => $unit,
+                    'order' => $d['order']
+                ];
+                $new_array2[] = array('order' => $dataa);
+        }
+        if(count($new_array2) == 0){
+            $data = [
+                'kode' => 500,
+                'message' => 'Tidak ada layanan yang dipilih ...'
+            ];
+            echo json_encode($data);
+            die;
+        }else{
+              //insert order header
+              $kode_h = 'ORL';
+              $id_header = $this->createOrderHeader($kode_h);
+              $save_header = [
+                  'kode_header' => $id_header,
+                  'tgl_header'=> $now
+              ];
+              mt_kode_header::create($save_header);
+              $total = count($new_array2);
+              $data_header = [
+                  'tgl_input' => $now ,
+                  'kode_order_header' => $id_header,
+                  'tujuan_unit' => '3003',
+                  'asal_unit' => auth()->user()->unit. ' | '. $unit .' | '. $request->kelas,
+                  'no_rm' => $rm,
+                  'kode_kunjungan' => $kodekunjungan,
+                  'diagnosa' => $request->diagnosa,
+                  'Dokter_pengirim'=> auth()->user()->kode_dpjp,
+                  'jml_layanan' => $total,
+                  'pic1' => auth()->user()->kode_dpjp,
+              ];
+              $hed = erm_order_header::create($data_header);
+              foreach($new_array2 as $da){
+                  $data =  $da['order']['order'];    
+                  $whatIWant = str_replace(' ', '',substr($data, strpos($data, "|") + 1));  
+                  $data_detail = [
+                      'id_orderhed' => $hed->id,
+                      'id_array' => $whatIWant
+                  ];
+                  erm_order_detail::create($data_detail);
+              }
+              $data = [
+                  'kode' => 200,
+                  'message' => 'Layanan berhasil dikirim ...'
+              ];
+              echo json_encode($data);
+              die;
+        }
     }
     public function simpanradiologi(Request $request)
     {
@@ -434,36 +456,107 @@ class ErmController extends BaseController
         $unit = $request->unit;
         $umur = $request->umur;
         $alamat = $request->alamat;
-        $dataSet['rm'] = $rm;
-        $dataSet['kodekunjungan'] = $kodekunjungan;
-        $dataSet['tanggalmasuk'] = $tglmasuk;
-        $dataSet['nama'] = $namapasien;
-        $dataSet['unit'] = $unit;
-        $dataSet['umur'] = $umur;
-        $dataSet['alamat'] = $alamat;
+        $new_array = array();
+        $keterangan = array();
+        $date = Carbon::now()->timezone('Asia/Jakarta');
+        $now = $date->toDateTimeString();
         foreach ($data as $nama) {
             $index = $nama['name'];
             $value = $nama['value'];
-            $dataSet[$index] = $value;
-            if ($value == '') {
-                $data = [
-                    'kode' => 500,
-                    'message' => $index . 'Belum diisi.....'
-                ];
-                echo json_encode($data);
-                die;
+            // $dataSet[$index] = $value;
+            if ($index != 'rm' && $index != 'dokter' && $index != 'tglmasuk' && $index != 'unit' && $index != 'nama'  && $index != 'umur'  && $index != 'jk'  && $index != 'alamat') {
+                if($index == 'ketereangan_ekstremitas' || $index == 'keterangan_sendi' || $index == 'keterangan_rontgen' || $index =='keterangan_foto_kontras' || $index == 'keterangan_ct_non' || $index == 'keterangan_ct_kon' || $index == 'keterangan_musc' && $index == 'keterangan_usg'){
+                    $keterangan[] = array($index => $value);
+                }else{
+                    $new_array[] = array('order' => $value);
+                }
             }
         }
-
-        $data = [
-            'kode_kunjungan' => $dataSet['kodekunjungan']
-        ];
-        $data = [
-            'kode' => 200,
-            'message' => ''
-        ];
-        echo json_encode($data);
-        die;
+        $new_array2 = array();
+        foreach ($new_array as $d) {
+            if($d['order'] != 'Tidak ada' && $d['order'] != '' && $d['order'] != 'tidak ada'){
+                $dataa = [
+                    'kodekunjungan' => $kodekunjungan,
+                    'diagnosa' => $request->diagnosa,
+                    'rm' => $rm,
+                    'nama' => $namapasien,
+                    'tglmasuk' => $tglmasuk,
+                    'unit' => $unit,
+                    'keterangan1' => $keterangan[0]['ketereangan_ekstremitas'],
+                    'keterangan2' => $keterangan[1]['keterangan_sendi'],
+                    'keterangan3' => $keterangan[2]['keterangan_rontgen'],
+                    'keterangan4' => $keterangan[3]['keterangan_foto_kontras'],
+                    'keterangan5' => $keterangan[4]['keterangan_ct_non'],
+                    'keterangan6' => $keterangan[5]['keterangan_ct_kon'],
+                    'order' => $d['order']
+                ];
+                $new_array2[] = array('order' => $dataa);
+            }
+        }
+        if(count($new_array2) == 0){
+            $data = [
+                'kode' => 500,
+                'message' => 'Tidak ada layanan yang dipilih ...'
+            ];
+            echo json_encode($data);
+            die;
+        }else{
+            //insert order header
+            $kode_h = 'ORR';
+            $id_header = $this->createOrderHeader($kode_h);
+            $save_header = [
+                'kode_header' => $id_header,
+                'tgl_header'=> $now
+            ];
+            mt_kode_header::create($save_header);
+            $total = count($new_array2);
+            $data_header = [
+                'tgl_input' => $now ,
+                'kode_order_header' => $id_header,
+                'tujuan_unit' => '3003',
+                'asal_unit' => auth()->user()->unit. ' | '. $unit .' | '. $request->kelas,
+                'no_rm' => $rm,
+                'kode_kunjungan' => $kodekunjungan,
+                'diagnosa' => $request->diagnosa,
+                'Dokter_pengirim'=> auth()->user()->kode_dpjp,
+                'jml_layanan' => $total,
+                'pic1' => auth()->user()->kode_dpjp,
+            ];
+            $hed = erm_order_header::create($data_header);
+            foreach($new_array2 as $da){
+                $data =  $da['order']['order'];    
+                $whatIWant = str_replace(' ', '',substr($data, strpos($data, "|") + 1));  
+                $data_detail = [
+                    'id_orderhed' => $hed->id,
+                    'id_array' => $whatIWant
+                ];
+                erm_order_detail::create($data_detail);
+            }
+            $data = [
+                'kode' => 200,
+                'message' => 'Layanan berhasil dikirim ...'
+            ];
+            echo json_encode($data);
+            die;
+        }        
+    }
+    public function createOrderHeader($unit)
+    {
+        $q = DB::select('SELECT id,kode_header,RIGHT(kode_header,6) AS kd_max  FROM mt_kode_order_header 
+        WHERE DATE(tgl_header) = CURDATE()
+        ORDER BY id DESC
+        LIMIT 1');
+        $kd = "";
+        if (count($q) > 0) {
+            foreach ($q as $k) {
+                $tmp = ((int) $k->kd_max) + 1;
+                $kd = sprintf("%06s", $tmp);
+            }
+        } else {
+            $kd = "000001";
+        }
+        date_default_timezone_set('Asia/Jakarta');
+        return $unit . date('ymd') . $kd;
     }
     public function simpanlayanan(Request $request)
     {

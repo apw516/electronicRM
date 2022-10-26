@@ -11,11 +11,12 @@
                 <p class="text-bold text-sm"> Pasien baru , kunjungan pertama ! </p>
                 @else
                 <p class="text-bold text-sm"> Pasien lama, Kunjungan ke-{{ $counter }} </p>
+                <input type="text" hidden id="cek_counter" value="{{ $counter }}">
                 @endif
             </div>
         </div>
-        <div class="col-md-8 ">
-            <table class="table text-bold table-md table-striped table-hover shadow-sm table-bordered">
+        <div class="col-md-8">
+            <table style="font-family:calibri" class="table table-sm table-striped table-hover text-md shadow-sm table-bordered">
                 <thead class="bg-info">
                     <th>Nomor RM</th>
                     <th>Nama</th>
@@ -42,100 +43,26 @@
         </div>
     </div>
 
-    <div class="card-header text-bold p-2">
-        <ul class="nav nav-pills ">
-            <li class="nav-item"><a class="nav-link " href="#activity" data-toggle="tab">Riwayat Pelayanan / Tindakan
+    <div style="font-family:calibri" class="card-header p-2 text-md">
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a class="nav-link tampilriwayat" href="#activity" data-toggle="tab" nomorrm="{{ $rm }}">Riwayat Pelayanan / Tindakan
                     Medis</a>
             </li>
             <li class="nav-item"><a class="nav-link tampilcppt" href="#cppt" data-toggle="tab" nomorrm="{{ $rm }}">CPPT</a></li>
             <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">E - Form</a></li>
             <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis</a></li>
            {{-- <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis & Order
-                    Layanan</a></li>
-            <li class="nav-item"><a class="nav-link tampilresume" href="#resumemedis" data-toggle="tab" nomorrm="{{ $rm }}">Resume Medis</a></li>--}}
+                    Layanan</a></li>--}}
+
         </ul>
     </div>
     <div class="card-body ">
         <div class="tab-content">
-            <div class=" tab-pane" id="activity">
+            <div class="tab-pane" id="activity">
                 <div class="post">
-                    @foreach ($periode as $p)
-                    <div class="card card-light collapsed-card">
-                        <div class="card-header">
-                            <h3 class="card-title">{{ $p->tgl_masuk }}</h3>
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i>
-                                </button>
-                            </div>
-                            <!-- /.card-tools -->
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body scroll2">
-                            <H5 class="text-bold text-danger">Riwayat Pelayanan / Tindakan Medis</H5>
-                            <table class="table text-bold table-md">
-                                <thead>
-                                    <th>TGL MASUK</th>
-                                    <th>TGL KELUAR</th>
-                                    <th>COUNTER</th>
-                                    <th>NAMA PASIEN</th>
-                                    <th>NAMA TARIF</th>
-                                    <th>PENJAMIN</th>
-                                    <th>PELAYANAN</th>
-                                    <th>UNIT</th>
-                                    <th>DOKTER</th>
-                                </thead>
-                                <tbody>
-                                    @foreach ($kunjungan as $r)
-                                    @if ($p->tgl_masuk == $r->TGL_MASUK)
-                                    <tr>
-                                        <td>{{ $r->TGL_MASUK }}</td>
-                                        <td>{{ $r->TGL_KELUAR }}</td>
-                                        <td>{{ $r->KONTER }}</td>
-                                        <td>{{ $r->NAMA_PX }}</td>
-                                        <td>{{ $r->NAMA_TARIF }}</td>
-                                        <td>{{ $r->PENJAMIN }}</td>
-                                        <td>{{ $r->SEQ_1 }}</td>
-                                        <td>{{ $r->NAMA_UNIT }}</td>
-                                        <td>{{ $r->NAMA_PARAMEDIS }}</td>
-                                    </tr>
-                                    @endif
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.card-body -->
-                    </div>
-                    @endforeach
-                    {{-- <table class="table table-sm">
-                        <thead>
-                            <th>TGL MASUK</th>
-                            <th>TGL KELUAR</th>
-                            <th>COUNTER</th>
-                            <th>NAMA PASIEN</th>
-                            <th>NAMA TARIF</th>
-                            <th>PENJAMIN</th>
-                            <th>PELAYANAN</th>
-                            <th>UNIT</th>
-                            <th>DOKTER</th>
-                        </thead>
-                        <tbody>
-                            @foreach ($kunjungan as $r)
-                                <tr>
-                                    <td>{{ $r->TGL_MASUK }}</td>
-                    <td>{{ $r->TGL_KELUAR }}</td>
-                    <td>{{ $r->KONTER}}</td>
-                    <td>{{ $r->NAMA_PX}}</td>
-                    <td>{{ $r->NAMA_TARIF}}</td>
-                    <td>{{ $r->PENJAMIN}}</td>
-                    <td>{{ $r->SEQ_1}}</td>
-                    <td>{{ $r->NAMA_UNIT}}</td>
-                    <td>{{ $r->NAMA_PARAMEDIS}}</td>
-                    </tr>
-                    @endforeach
-                    </tbody>
-                    </table> --}}
+                    <div class="tampilriwayatlayan">
+                       
+                    </div>                          
                 </div>
             </div>
             <!-- /.tab-pane -->
@@ -143,13 +70,9 @@
                 <div class="viewcppt">
                 </div>
             </div>
-            <div class="tab-pane" id="resumemedis">
-                <div class="viewresume">
-                </div>
-            </div>
-            <div class="tab-pane active" id="timeline">
-                <div class="form-group ">
-                    <select class="custom-select form-control-border text-bold" id="jenisform" onchange="gantiform()">
+            <div class="active tab-pane" id="timeline">
+                <div style="font-family:calibri" class="form-group">
+                    <select style="font-family:calibri" class="custom-select form-control-border text-md" id="jenisform" onchange="gantiform()">
                         <!-- <option>--- Silahkan Pilih Jenis Form ---</option> -->
                         <option value="">-- Pilih Form --</option>
                         <!-- <option value="2">RM.02.01-RJ / Pasien Lama ( dewasa )</option> -->
@@ -183,12 +106,12 @@
                                         <th>Tarif</th>
                                     </thead>
                                     <tbody class="scroll">
-                                        @foreach ($tarif as $t)
+                                        {{-- @foreach ($tarif as $t)
                                         <tr class="pilihtindakan" namatindakan="{{ $t->Tindakan }}" tarif="{{ $t->tarif }}" kode="{{ $t->kode }}">
                                             <td>{{ $t->Tindakan }}</td>
                                             <td> RP. {{ $t->tarif }}</td>
                                         </tr>
-                                        @endforeach
+                                        @endforeach --}}
                                     </tbody>
                                 </table>
                             </div>
@@ -206,9 +129,9 @@
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Pilih dokter</label>
                                         <select class="form-control" id="dokterpemeriksa">
-                                            @foreach ($dokter as $d)
+                                            {{-- @foreach ($dokter as $d)
                                             <option value="{{ $d->kode_dokter }}">{{ $d->nama_dokter }}</option>
-                                            @endforeach
+                                            @endforeach --}}
                                         </select>
                                     </div>
 
@@ -249,9 +172,8 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         });
     });
-
     function gantiform() {
-        spinner = $('#loader');
+        spinner = $('#loader2');
         spinner.show();
         id = $('#jenisform').val()
         tglmasuk = $('#tglmasuk').val()
@@ -309,29 +231,30 @@
             }
         });
     });
-    $(".tampilresume").click(function() {
+    $(".tampilriwayat").click(function() {
         nomorrm = $(this).attr('nomorrm')
+        counter = $('#cek_counter').val()
         spinner = $('#loader2');
         spinner.show();
         $.ajax({
             type: 'post',
             data: {
                 _token: "{{ csrf_token() }}",
-                nomorrm
+                nomorrm,counter
             },
-            url: '<?= route('tampilresume') ?>',
+            url: '<?= route('tampilriwayat') ?>',
             error: function(data) {
                 spinner.hide();
                 Swal.fire({
                     icon: 'error',
-                    title: 'Ooopss....',
-                    text: 'Sepreti ada masalah ...',
+                    title: 'Oops...',
+                    text: 'Sepertinya ada masalah ...',
                     footer: ''
                 })
             },
             success: function(response) {
                 spinner.hide();
-                $('.viewresume').html(response)
+                $('.tampilriwayatlayan').html(response)
             }
         });
     });
@@ -380,8 +303,6 @@
             })
         }
     });
-
-
     $(document).ready(function() {
         $(".simpanlayanan").click(function() {
             var data = $('.formtindakan').serializeArray();

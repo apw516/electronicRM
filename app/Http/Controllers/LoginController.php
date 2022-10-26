@@ -22,7 +22,6 @@ class LoginController extends BaseController
             'username' => ['required'],
             'password' => ['required'],
         ]);
-
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate(); 
             $hak = auth()->user()->hak_akses;
@@ -30,7 +29,7 @@ class LoginController extends BaseController
                 return redirect()->intended('erm');
             }
             if($hak == 3){
-                return redirect()->intended('/ermdokter');
+                return redirect()->intended('ermdokter');
             }
         } 
         return back()->with('loginError', 'Login gagal !');
