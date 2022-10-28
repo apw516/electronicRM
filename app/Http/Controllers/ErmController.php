@@ -50,6 +50,13 @@ class ErmController extends BaseController
             'ass_kep' =>  DB::select('SELECT *,b.kode_kunjungan AS kunjungan_2 ,a.sumber_data AS sumber_data_askep,b.sumber_data AS sumber_data_asmed, b.`keluhan_utama`AS keluhan_utamadokter, fc_nama_dpjp(b.dpjp) as nama_dokter, a.`keluhan_utama`AS keluhan_utamaperawat FROM `erm_assesmen_keperawatan_rajal` a LEFT OUTER JOIN erm_assesmen_awal_medis_rajal b ON b.no_rm = a.no_rm WHERE a.no_rm = ?', [$request->nomorrm])
         ]);
     }
+    public function tampilresume(Request $request)
+    {
+        return view('erm.resume', [
+            'ass_kep' => DB::select('SELECT * FROM erm_assesmen_keperawatan_rajal where no_rm =? ORDER BY tglwaktu_assesmen desc', [$request->nomorrm]),
+            'ass_awal' => DB::select('SELECT * FROM erm_assesmen_awal_medis_rajal WHERE no_rm = ? ORDER BY tglwaktu_assesmen desc', [$request->nomorrm])
+        ]);
+    }
     public function tampilriwayat(Request $request)
     {
         $periode = DB::select('SELECT DISTINCT DATE(tgl_masuk) as tgl_masuk from ts_kunjungan where no_rm = ? ORDER BY tgl_masuk desc', [$request->nomorrm]);
@@ -63,12 +70,13 @@ class ErmController extends BaseController
         LEFT OUTER JOIN ts_layanan_header ON ts_kunjungan.kode_kunjungan = ts_layanan_header.kode_kunjungan
         LEFT OUTER JOIN ts_layanan_detail ON ts_layanan_header.id = ts_layanan_detail.row_id_header
         WHERE no_rm = ? GROUP BY ts_kunjungan.tgl_masuk DESC', [$request->nomorrm]);
-        // dd($periode);
+        // dd($periode);dhghguhghfoi                  byu  bgygyygygygbhhgyvv    bnnjyasdfjdhjfhujfhfheufhuiewhfuiewhfio
         return view('erm.riwayatpelayanan', [
             'kunjungan' => $all_licencies,
             'periode' => $periode,
         ]);
     }
+    
     public function formpasien(request $request)
     {
         $nomorrm = $request->rm;

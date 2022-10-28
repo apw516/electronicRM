@@ -28,6 +28,7 @@ Route::group(['middleware' => ['hak_akses:2','auth']], function () {
 Route::post('tampilcppt', [ErmController::class, 'tampilcppt'])->middleware('auth')->name('tampilcppt');
 Route::post('tampilcppt2', [ErmController::class, 'tampilcppt'])->middleware('auth')->name('tampilcppt2');
 Route::post('tampilriwayat', [ErmController::class, 'tampilriwayat'])->middleware('auth')->name('tampilriwayat');
+Route::post('tampilresume', [ErmController::class, 'tampilresume'])->middleware('auth')->name('tampilresume');
 
 Route::group(['middleware' => 'hak_akses:3', 'auth'], function () {
     Route::get('ermdokter', [Erm2Controller::class, 'index'])->name('ermdokter');

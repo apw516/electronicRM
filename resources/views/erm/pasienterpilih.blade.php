@@ -51,6 +51,7 @@
             <li class="nav-item"><a class="nav-link tampilcppt" href="#cppt" data-toggle="tab" nomorrm="{{ $rm }}">CPPT</a></li>
             <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">E - Form</a></li>
             <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis</a></li>
+            <li  class="nav-item"><a class="nav-link resume" href="#resume" data-toggle="tab" nomorrm="{{ $rm }}">Resume Medis</a></li>
            {{-- <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis & Order
                     Layanan</a></li>--}}
 
@@ -68,6 +69,10 @@
             <!-- /.tab-pane -->
             <div class="tab-pane" id="cppt">
                 <div class="viewcppt">
+                </div>
+            </div>
+            <div class="tab-pane" id="resume">
+                <div class="viewresume">
                 </div>
             </div>
             <div class="active tab-pane" id="timeline">
@@ -258,6 +263,34 @@
             }
         });
     });
+    $(".resume").click(function(){
+        nomorrm = $(this).attr('nomorrm')
+        counter = $('#cek_counter').val()
+        spinner = $('#loader2');
+        spinner.show();
+        $.ajax({
+            type: 'post',
+            data: {
+                _token: "{{ csrf_token() }}",
+                nomorrm,counter
+            },
+            url: '<?= route('tampilresume') ?>',
+            error: function(data){
+                spinner.hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oopss.....',
+                    text: 'Sepertinya ada masalah ...',
+                    footer: ''
+                })
+            },
+            success: function(response){
+                spinner.hide();
+                $('.viewresume').html(response)
+            }
+        });
+    });
+    
     function carilayanan() {
         spinner = $('#loader');
         spinner.show();
