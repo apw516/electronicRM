@@ -257,6 +257,11 @@
     });
     $(".resume").click(function(){
         nomorrm = $(this).attr('nomorrm')
+        tglmasuk = $('#tglmasuk').val()
+        nama = $('#nama').val()
+        unit = $('#unit').val()
+        alamat = $('#alamat').val()
+        umur = $('#umur').val()
         counter = $('#cek_counter').val()
         spinner = $('#loader2');
         spinner.show();
@@ -264,7 +269,13 @@
             type: 'post',
             data: {
                 _token: "<?php echo e(csrf_token()); ?>",
-                nomorrm,counter
+                tglmasuk,
+                nomorrm, 
+                nama,
+                unit,
+                alamat,
+                umur,
+                counter
             },
             url: '<?= route('tampilresume') ?>',
             error: function(data){

@@ -26,8 +26,7 @@ class ErmController extends BaseController
     public function ambildatapasien(){
         $unit = auth()->user()->unit;
         $pasien_poli = DB::select('select a.kode_kunjungan,fc_nama_px(a.no_rm) as nama,a.no_rm,fc_umur(a.no_rm) as umur, fc_alamat4(a.no_rm) as alamat , fc_nama_unit1(a.kode_unit) as unit,a.tgl_masuk, a.kelas, a.counter, b.kode_kunjungan as kj 
-        ,fc_nama_unit1(a.ref_unit) as asalunit from ts_kunjungan a
-        left outer join erm_assesmen_keperawatan_rajal b on b.kode_kunjungan = a.kode_kunjungan where a.kode_unit = ? and a.status_kunjungan = ?', [$unit, 1]);
+        ,fc_nama_unit1(a.ref_unit) as asalunit from ts_kunjungan a left outer join erm_assesmen_keperawatan_rajal b on b.kode_kunjungan = a.kode_kunjungan where a.kode_unit = ? and a.status_kunjungan = ? AND DATE(a.tgl_masuk)=?', [$unit, 2, '2022-10-28']);
         return view('erm.datapasien', [
             'pasien' => $pasien_poli
         ]);
@@ -51,10 +50,23 @@ class ErmController extends BaseController
         ]);
     }
     public function tampilresume(Request $request)
-    {
+    { $nama  = $request->nama;
+        $alamat = $request->alamat;
+        $kodekunjungan = $request->kodekunjungan;
+        $unit = $request->unit;
+        $counter = $request->counter;
+        $umur = $request->umur;
+        $tglmasuk = $request->tglmasuk;
         return view('erm.resume', [
+            'nama' =>  $nama,
+            'alamat' => $alamat,
+            'tglmasuk' => $tglmasuk,
+            'umur' => $umur,
+            'counter' => $counter,
+            'unit' => $unit,
             'ass_kep' => DB::select('SELECT * FROM erm_assesmen_keperawatan_rajal where no_rm =? ORDER BY tglwaktu_assesmen desc', [$request->nomorrm]),
-            'ass_awal' => DB::select('SELECT * FROM erm_assesmen_awal_medis_rajal WHERE no_rm = ? ORDER BY tglwaktu_assesmen desc', [$request->nomorrm])
+            'ass_awal' => DB::select('SELECT * ,fc_NAMA_PARAMEDIS1(dpjp) AS nama_dokter FROM erm_assesmen_awal_medis_rajal WHERE no_rm = ? ORDER BY tglwaktu_assesmen desc', [$request->nomorrm]),
+            'pasien'=> DB::select('SELECT * FROM mt_pasien WHERE no_rm = ?', [$request->nomorrm])
         ]);
     }
     public function tampilriwayat(Request $request)
