@@ -1,10 +1,10 @@
 <div class="card scroll">
-    <div class="card-header text-md" style="font-family:calibri">RESUME RAWAT JALAN
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-        </div>
+  <div class="card-header text-md" style="font-family:calibri">RESUME RAWAT JALAN
+    <div class="card-tools">
+      <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
     </div>
- <div class="card">
+  </div>
+  <div class="card">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -74,7 +74,7 @@
                 <strong><i class="fas fa-calendar mr-1"></i> Tanggal Lahir</strong>
 
                 <p>
-                 <?php echo e($pasien[0]->tgl_lahir); ?>
+                  <?php echo e($pasien[0]->tgl_lahir); ?>
 
                 </p>
 
@@ -86,12 +86,13 @@
             <!-- /.card -->
           </div>
           <!-- /.col -->
+
           <div class="col-md-9">
             <div class="card">
               <div class="card-header p-2">
                 <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#dokter" data-toggle="tab">Riwayat Pemeriksaan</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
+                  <li class="nav-item"><a class="nav-link active" href="#dokter" data-toggle="tab">Riwayat Pemeriksaan Dokter</a></li>
+                  <li class="nav-item"><a class="nav-link" href="#perawat" data-toggle="tab">Riwayat Pemeriksaan Perawat/Bidan</a></li>
                   <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
                 </ul>
               </div><!-- /.card-header -->
@@ -101,208 +102,157 @@
                     <!-- Post -->
                     <div class="post">
                       <div class="user-block">
-                        <img  class="img-circle img-bordered-sm" src="public/img/logo_rs.png" alt="user image">
+                    
+                        <img class="img-circle img-bordered-sm" src="public/img/logo_rs.png" alt="user image">
                         <span class="username">
-                          <a href="#"><?php echo e($ass_awal[0]->nama_dokter); ?></a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                          <?php echo e($ass_awal[0]->nama_dokter); ?> <a href="#">(<?php echo e($unit); ?>)</a>
                         </span>
                         <span class="description">Shared publicly <?php echo e($ass_awal[0]->tglwaktu_selesai); ?> today</span>
                       </div>
                       <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
+                      <div class="card">
+                     
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-success">Keluhan Utama</p>
+                          <?php echo e($ass_awal[0]->keluhan_utama); ?>
+
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-success">Diagnosis</p>
+                          <?php echo e($ass_awal[0]->diagnosis); ?>
+
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-success">Diagnosis</p>
+                          <?php echo e($ass_awal[0]->riwayat_penyakit); ?>
+
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-success">Pemeriksaan Fisik</p>
+                          <?php echo e($ass_awal[0]->pemeriksaan_fisik); ?>
+
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-success">Riwayat Alergi</p>
+                          <?php echo e($ass_awal[0]->riwayat_alergi_0); ?>, <?php echo e($ass_awal[0]->riwayat_alergi_1); ?>
+
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-success">Rencana Terapi</p>
+                          <?php echo e($ass_awal[0]->rencana_terapi); ?>
+
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-success">Rencana Pemeriksaan Penunjang</p>
+                          <?php echo e($ass_awal[0]->rencana_pemeriksaan_penunjang); ?>
+
+                        </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-success">Rujuk</p>
+                          <?php echo e($ass_awal[0]->dirujuk_ke); ?> <br>
+                          Keterangan di rujuk :
+                          <?php echo e($ass_awal[0]->keterangan_dirujuk); ?>
+
+                        </div>
+                      </div>
+
+                      <p class="text-right"> 
+                        <img width="200px" src="<?php echo e($ass_awal[0]->signature); ?>" alt=""> <br>
+
                       </p>
 
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
                     </div>
                     <!-- /.post -->
 
-                    <!-- Post -->
-                    <div class="post clearfix">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Sarah Ross</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Sent you a message - 3 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <p>
-                        Lorem ipsum represents a long-held tradition for designers,
-                        typographers and the like. Some people hate it and argue for
-                        its demise, but others ignore the hate as they create awesome
-                        tools to help create filler text for everyone from bacon lovers
-                        to Charlie Sheen fans.
-                      </p>
-
-                      <form class="form-horizontal">
-                        <div class="input-group input-group-sm mb-0">
-                          <input class="form-control form-control-sm" placeholder="Response">
-                          <div class="input-group-append">
-                            <button type="submit" class="btn btn-danger">Send</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <!-- /.post -->
-
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                        <img class="img-circle img-bordered-sm" src="../../dist/img/user6-128x128.jpg" alt="User Image">
-                        <span class="username">
-                          <a href="#">Adam Jones</a>
-                          <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
-                        </span>
-                        <span class="description">Posted 5 photos - 5 days ago</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="row mb-3">
-                        <div class="col-sm-6">
-                          <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                          <div class="row">
-                            <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="../../dist/img/photo2.png" alt="Photo">
-                              <img class="img-fluid" src="../../dist/img/photo3.jpg" alt="Photo">
-                            </div>
-                            <!-- /.col -->
-                            <div class="col-sm-6">
-                              <img class="img-fluid mb-3" src="../../dist/img/photo4.jpg" alt="Photo">
-                              <img class="img-fluid" src="../../dist/img/photo1.png" alt="Photo">
-                            </div>
-                            <!-- /.col -->
-                          </div>
-                          <!-- /.row -->
-                        </div>
-                        <!-- /.col -->
-                      </div>
-                      <!-- /.row -->
-
-                      <p>
-                        <a href="#" class="link-black text-sm mr-2"><i class="fas fa-share mr-1"></i> Share</a>
-                        <a href="#" class="link-black text-sm"><i class="far fa-thumbs-up mr-1"></i> Like</a>
-                        <span class="float-right">
-                          <a href="#" class="link-black text-sm">
-                            <i class="far fa-comments mr-1"></i> Comments (5)
-                          </a>
-                        </span>
-                      </p>
-
-                      <input class="form-control form-control-sm" type="text" placeholder="Type a comment">
-                    </div>
-                    <!-- /.post -->
                   </div>
                   <!-- /.tab-pane -->
-                  <div class="tab-pane" id="timeline">
+                  <div class="tab-pane" id="perawat">
                     <!-- The timeline -->
-                    <div class="timeline timeline-inverse">
-                      <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-danger">
-                          10 Feb. 2014
+                    <div class="post">
+                      <div class="user-block">
+                    
+                        <img class="img-circle img-bordered-sm" src="public/img/logo_rs.png" alt="user image">
+                        <span class="username">
+                          Perawat  <a href="#">(<?php echo e($unit); ?>)</a>
                         </span>
+                        <span class="description">Shared publicly <?php echo e($ass_kep[0]->tgl_selesai); ?> today</span>
                       </div>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-envelope bg-primary"></i>
+                      <!-- /.user-block -->
+                      <div class="card">
+                     
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-warning">Keluhan Utama</p>
+                          <?php echo e($ass_kep[0]->keluhan_utama); ?>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 12:05</span>
-
-                          <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                          <div class="timeline-body">
-                            Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                            weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                            jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                            quora plaxo ideeli hulu weebly balihoo...
-                          </div>
-                          <div class="timeline-footer">
-                            <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                          </div>
                         </div>
                       </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-user bg-info"></i>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-warning">Diagnosa</p>
+                          <?php echo e($ass_kep[0]->diag_perawat); ?>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
-
-                          <h3 class="timeline-header border-0"><a href="#">Sarah Young</a> accepted your friend request
-                          </h3>
                         </div>
                       </div>
-                      <!-- END timeline item -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-comments bg-warning"></i>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-warning">Nyeri</p>
+                          <?php echo e($ass_kep[0]->assesmen_nyeri); ?>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                          <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                          <div class="timeline-body">
-                            Take me to your leader!
-                            Switzerland is small and neutral!
-                            We are more like Germany, ambitious and misunderstood!
-                          </div>
-                          <div class="timeline-footer">
-                            <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
-                          </div>
                         </div>
                       </div>
-                      <!-- END timeline item -->
-                      <!-- timeline time label -->
-                      <div class="time-label">
-                        <span class="bg-success">
-                          3 Jan. 2014
-                        </span>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-warning">Status Fungsi Tubuh</p>
+                          <?php echo e($ass_kep[0]->stafungsi_cacattubuh); ?> <br>
+                          <?php echo e($ass_kep[0]->stafungsi_Alatbantu); ?> <br>
+                         </div>
                       </div>
-                      <!-- /.timeline-label -->
-                      <!-- timeline item -->
-                      <div>
-                        <i class="fas fa-camera bg-purple"></i>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-warning">Skrinning Gizi</p>
+                          <?php echo e($ass_kep[0]->assesmen_nyeri); ?> <br>
+                          <?php echo e($ass_kep[0]->Skri_gizi_1); ?> <br>
+                          <?php echo e($ass_kep[0]->Skri_gizi_2); ?> <br>
+                          <?php echo e($ass_kep[0]->Skri_gizi_3); ?> <br>
+                          <?php echo e($ass_kep[0]->Skri_gizi_4); ?>
 
-                        <div class="timeline-item">
-                          <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
+                         </div>
+                      </div>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-warning">Rencana Keperawatan</p>
+                          <?php echo e($ass_kep[0]->rencana_perawat); ?>
 
-                          <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos</h3>
-
-                          <div class="timeline-body">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                            <img src="https://placehold.it/150x100" alt="...">
-                          </div>
                         </div>
                       </div>
-                      <!-- END timeline item -->
-                      <div>
-                        <i class="far fa-clock bg-gray"></i>
+                      <div class="card">
+                        <div class="card-body text-md ">
+                          <p class="text-bold text-md bg-warning">Tindakan Keperawatan</p>
+                          <?php echo e($ass_kep[0]->tindakan_perawat); ?>
+
+                        </div>
                       </div>
+                     
+
+                      <p class="text-right"> 
+                        <img width="200px" src="<?php echo e($ass_kep[0]->ttd_perawat); ?>" alt=""> <br>
+
+                      </p>
+
                     </div>
                   </div>
                   <!-- /.tab-pane -->
