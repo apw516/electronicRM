@@ -1,5 +1,4 @@
-<p class="text-lg text-bold">Data Pasien</p>
-<table style="font-family:calibri" id="datapasien2" class="table table-sm text-md table-bordered table-hover">
+<table style="font-family:calibri" id="datapasien2" class="table table-sm text-xs table-bordered table-hover">
     <thead>
         <th hidden>Kode kunjungan</th>
         <th>Tanggal Masuk</th>
@@ -8,11 +7,12 @@
         <th>Umur</th>
         <th>alamat</th>
         <th>Poliklinik Asal</th>
+        <th>Status</th>
         <th hidden>unit</th>
     </thead>
     <tbody>
         @foreach ($pasien as $p)
-            <tr class="@if ($p->kjper != null) pilihpasien toastsDefaultSuccess @else bg-danger @endif "
+            <tr class="@if ($p->kjper != null) pilihpasien toastsDefaultSuccess @endif "
                 nomor-rm="{{ $p->no_rm }}" tglkunjugan="{{ $p->tgl_masuk }}" nama="{{ $p->nama }}"
                 kodekunjungan="{{ $p->kode_kunjungan }}" alamat="{{ $p->alamat }}"
                 counter="{{ $p->counter }}"umur="{{ $p->umur }}" unit="{{ $p->unit }}"
@@ -25,6 +25,11 @@
                 <td>{{ $p->alamat }}</td>
                 <td hidden>{{ $p->unit }}</td>
                 <td>{{ $p->asalunit }}</td>
+                <td> @if($p->kjper == NULL)    
+            <span class="right badge badge-danger">Assesmen keperawatan belum diisi ...</span>
+            @else
+            <span class="right badge badge-success">Assesmen keperawatan sudah diisi ...</span>
+            @endif   </td>
             </tr>
         @endforeach
     </tbody>
@@ -34,7 +39,7 @@
         $("#datapasien2").DataTable({
             "responsive": false,
             "lengthChange": false,
-            "pageLength": 100,
+            "pageLength": 8,
             "autoWidth": false,
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         });

@@ -1,10 +1,9 @@
 @extends('semeru.header')
 @section('container')
-    <div class="container-fluid" style="margin-top:130px">
-        <div id="tabelpasien" class="container">
+    <div class="container-fluid" style="margin-top:100px">
+        <div id="tabelpasien" class="container-fluid">
             
         </div>
-
         <div style="display:none" id="pasienterpilih" class="card pasienterpilih">
 
         </div>

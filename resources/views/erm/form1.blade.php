@@ -77,7 +77,7 @@
                     </div>
                 </td>
             </tr>
-            <TR>
+            <!-- <TR>
                 <td colspan="4" class="text-center bg-secondary mt-3">Assesmen
                     Psikologi,Sosial,Ekonomi,Kultural Dan Spiritual</td>
             </TR>
@@ -185,7 +185,7 @@
                             lain</label>
                     </div>
                 </td>
-            </tr>
+            </tr> -->
             <tr>
                 <td class="text-bold">Riwayat Psikologis</td>
                 <td colspan="4">
@@ -337,10 +337,10 @@
                         </div>
                     </td>
                     <td rowspan="3">
-                        <textarea readonly class="form-control" id="skorskrininggizi">0</textarea>
+                        <textarea readonly class="form-control" name="skorskrininggizi" id="skorskrininggizi">0</textarea>
                     </td>
                 </tr>
-                <tr >
+                <tr>
                     <td colspan="2">
                         <div class="form-check form-check-inline">
                             <input skor="2" class="form-check-input ml-2 mr-3 skrininggizi_pasienbaru" type="radio" name="skrininggizi_pasienbaru" id="skrininggizi_pasienbaru" value="tidak yakin / tidak tahu">
@@ -350,7 +350,7 @@
                         </div>
                     </td>
                 </tr>
-                <tr >
+                <tr>
                     <td>
                         <div class="form-check form-check-inline">
                             <input skor="10" class="form-check-input ml-2 mr-3 skrininggizi_pasienbaru" type="radio" name="skrininggizi_pasienbaru" id="skrininggizi_pasienbaru" value="Ya">
@@ -389,7 +389,7 @@
                     <td colspan="3" class="text-bold">2. Apakah asupan makanan berkurang karena berkurangnya nafsu
                         makan</td>
                 </tr>
-                <tr >
+                <tr>
                     <td colspan="2">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input  ml-2 mr-1 asupanmkanan_pasienbaru" skor="0" type="radio" name="asupanmkanan_pasienbaru" id="asupanmkanan_pasienbaru" value="Tidak" checked>
@@ -397,10 +397,10 @@
                         </div>
                     </td>
                     <td rowspan="2">
-                        <textarea readonly class="form-control" id="skorasupanmkanan_pasienbaru">0</textarea>
+                        <textarea readonly class="form-control" name="skorasupanmkanan_pasienbaru" id="skorasupanmkanan_pasienbaru">0</textarea>
                     </td>
                 </tr>
-                <tr >
+                <tr>
                     <td colspan="2">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input  ml-2 mr-1 asupanmkanan_pasienbaru" skor="1" type="radio" name="asupanmkanan_pasienbaru" id="asupanmkanan_pasienbaru" value="Ya">
@@ -412,7 +412,7 @@
                     <td colspan="2" class="text-center">
                         <h5>Total Skor</h5>
                     </td>
-                    <td><input readonly type="text" class="form-control form-control-sm" id="totalskorgizi" name="totalskorgizi"></td>
+                    <td><input readonly type="text" class="form-control form-control-sm" id="totalskorgizi" name="totalskorgizi" value="0"></td>
                 </tr>
                 <tr class="text-bold text-md">
                     <td colspan="2" class="text-bold">3. Pasien dengan diagnosa khusus : Penyakit DM / Ginjal /
@@ -423,7 +423,7 @@
                         <textarea class="form-control form-control-sm" name="penyakitlainpasien" placeholder="sebutkan jika ada penyakit lain ....">Tidak ada</textarea>
                     </td>
                 </tr>
-                <tr >
+                <tr>
                     <td>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Tidak" checked>
@@ -432,17 +432,17 @@
                     </td>
                     <td colspan="2">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Ya" >
+                            <input class="form-check-input  ml-2 mr-1" type="radio" name="diagnosakhusus_pasienbaru" id="diagnosakhusus_pasienbaru" value="Ya">
                             <label class="form-check-label" for="inlineRadio2"> Ya</label>
                         </div>
                     </td>
                 </tr>
-                <tr >
+                <tr>
                     <td colspan="3" class="text-bold">Bila skor >= 2, pasien beresiko malnutrisi dilakukan
                         pengkajian
                         lanjut oleh ahli gizi</td>
                 </tr>
-                <tr >
+                <tr>
                     <td>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input  ml-2 mr-1" type="radio" name="malnutrisi_pasienbaru" id="malnutrisi_pasienbaru" value="Tidak" checked>
@@ -457,7 +457,7 @@
                     </td>
                     <td>
                         <label for="">*Tanggal pengkajian lanjut</label>
-                        <input type="text" name="" class="form-control form-control-sm datepicker" placeholder="Tanggal pengkajian lanjut">
+                        <input type="text" name="tglpengkajianlanjut" class="form-control form-control-sm datepicker" placeholder="Tanggal pengkajian lanjut">
                     </td>
                 </tr>
                 <tr class="text-bold">
@@ -528,6 +528,7 @@
             </tbody>
         </table>
         <div class="col-md-12 justify-content-end mb-2">
+            <button type="button" class="btn btn-secondary float-right mr-2" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-success float-right mr-2 tombol-simpanrm2 mb-3">Simpan</button>
         </div>
     </form>
@@ -619,6 +620,7 @@
                             text: 'Data berhasil disimpan!',
                             footer: ''
                         })
+                        gantiform()
                         ambildatapasien()
                     }
                 }
@@ -687,22 +689,18 @@
                 $('#skalenyeripasien').val('0')
             }
         });
-
+        var wrapper = document.getElementById("signature-pad");
+        var clearButton = wrapper.querySelector("[data-action=clear]");
+        var canvas = wrapper.querySelector("canvas");
+        var el_note = document.getElementById("note");
+        var signaturePad;
+        signaturePad = new SignaturePad(canvas);
+        clearButton.addEventListener("click", function(event) {
+            document.getElementById("note").innerHTML = "The signature should be inside box";
+            signaturePad.clear();
+        });
+        function my_function() {
+            document.getElementById("note").innerHTML = "";
+        }
     });
-</script>
-<script>
-    var wrapper = document.getElementById("signature-pad");
-    var clearButton = wrapper.querySelector("[data-action=clear]");
-    var canvas = wrapper.querySelector("canvas");
-    var el_note = document.getElementById("note");
-    var signaturePad;
-    signaturePad = new SignaturePad(canvas);
-    clearButton.addEventListener("click", function(event) {
-        document.getElementById("note").innerHTML = "The signature should be inside box";
-        signaturePad.clear();
-    });
-
-    function my_function() {
-        document.getElementById("note").innerHTML = "";
-    }
 </script>

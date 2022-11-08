@@ -22,7 +22,7 @@
   <script src="{{ asset('public/semeru/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-    $(".preloader2").fadeOut();
+    // $(".preloader2").fadeOut();
       $(function() {
           $("#tabelpasienterpilih").DataTable({
               "responsive": true,

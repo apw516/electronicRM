@@ -459,8 +459,6 @@
             });
         });
     });
-</script>
-<script>
     var wrapper = document.getElementById("signature-pad");
     var clearButton = wrapper.querySelector("[data-action=clear]");
     var canvas = wrapper.querySelector("canvas");

@@ -1,307 +1,219 @@
-<div class="card scroll">
-  <div class="card-header text-md" style="font-family:calibri">RESUME RAWAT JALAN
-    <div class="card-tools">
-      <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+
+      <!-- Profile Image -->
+      <div class="card card-primary card-outline">
+        <div class="card-body box-profile">
+          <div class="text-center">
+            <img class="profile-user-img img-fluid img-circle" src="{{ asset('public/semeru/dist/img/user4-128x128.jpg') }}" alt="User profile picture">
+          </div>
+
+          <h3 class="profile-username text-center">{{ $nama }}</h3>
+
+          <p class="text-muted text-center">RM {{ $rm }}</p>
+
+          <ul class="list-group list-group-unbordered mb-3">
+            <li class="list-group-item">
+              <b>Nomor RM</b> <a class="float-right">{{ $pasien[0]->no_rm }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>Nomor KTP</b> <a class="float-right">{{ $pasien[0]->nik_bpjs }}</a>
+            </li>
+            <li class="list-group-item">
+              <b>Nomor BPJS</b> <a class="float-right">{{ $pasien[0]->no_Bpjs }}</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+
+      <!-- About Me Box -->
+      <div class="card card-primary">
+        <div class="card-header">
+          <h3 class="card-title">Riwayat Kunjungan</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body scroll">
+          @foreach($riwayat_kunjungan as $a)
+          <strong><i class="fas fa-book mr-1"></i> {{ $a->tgl_masuk }} | {{ $a->nama_unit }}</strong>
+
+          <p class="text-muted">
+            {{ $a->dokter}} | {{ $a->nama_penjamin }} <button kode="{{ $a->kode_kunjungan }}" class="badge badge-info lihatresume">Lihat Resume</button>
+          </p>
+
+          <hr>
+          @endforeach
+        </div>
+        <!-- /.card-body -->
+      </div>
+      <!-- /.card -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-9">
+      <h5 class="text-bold mb-3">{{ $now }}</h5>
+      @if($cek_form != 0)
+      <div class="card card-success collapsed-card">
+        <div class="card-header">
+          <h3 class="card-title">Form</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" onclick="editdataform()"><i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <!-- /.card-tools -->
+        </div>
+      </div>
+      @else
+        <h5 class="text-danger mb-3">Anda belum mengisi form assesmen awal !</h5>
+      @endif
+      <div class="card card-success collapsed-card">
+        <div class="card-header">
+          <h3 class="card-title">Order Layanan Penunjang</h3>
+          <div class="card-tools">
+            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
+            </button>
+          </div>
+          <!-- /.card-tools -->
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+              @foreach($order as $o)
+                <div class="card card-dark">
+                  <div class="card-header text-md"> {{ $o->nama_unit }}| {{$o->kode_layanan_header}}</div>
+                  <div class="card-body">
+                    <table class="table table-bordered">
+                      <thead>
+                        <th>Nama Layanan</th>
+                        <th>Jumlah</th>
+                        <th>Diskon dokter</th>
+                        <th>Diskon Layanan</th>
+                        <th>Tarif</th>
+                        <th>Total</th>
+                      </thead>
+                      <tbody>
+                        @foreach($orderdetail as $od)
+                          @if($od->kode_layanan_header == $o->kode_layanan_header)
+                            <tr>
+                              <td>{{ $od->NAMA_TARIF }}</td>
+                              <td>{{ $od->jumlah_layanan }}</td>
+                              <td>{{ $od->diskon_dokter }}</td>
+                              <td>{{ $od->diskon_layanan }}</td>
+                              <td>{{ $od->total_tarif }}</td>
+                              <td>{{ $od->total_layanan }}</td>
+                            </tr>
+                          @endif
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              @endforeach
+        </div>
+        <!-- /.card-body -->
+      </div>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modaleditform" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Form</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="editform">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+      </div>
     </div>
   </div>
-  <div class="card">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-md-12">
-            <h1>Profile Pasien</h1>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-3">
-
-            <!-- Profile Image -->
-            <div class="card card-primary card-outline">
-              <div class="card-body box-profile">
-                <h3 class="profile-username text-center">{{ $nama }}</h3>
-
-                <p class="text-muted text-center"></p>
-
-                <ul class="list-group list-group-unbordered mb-3">
-                  <li class="list-group-item">
-                    <b>Frekuensi Napas</b> <a class="float-right">{{ $ass_kep[0]->ttv_freq_napas }}/ menit</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Frekuensi Nadi</b> <a class="float-right">{{ $ass_kep[0]->ttv_freq_nadi }}x/menit</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Suhu</b> <a class="float-right">{{ $ass_kep[0]->ttv_suhu }}°C</a>
-                  </li>
-                  <li class="list-group-item">
-                    <b>Tekanan Darah</b> <a class="float-right">{{ $ass_kep[0]->ttv_tekanan_darah }}mmHG</a>
-                  </li>
-                </ul>
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <!-- About Me Box -->
-            <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title">About Me</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <strong><i class="fas fa-address-card mr-1"></i> No Rekam Medis</strong>
-
-                <p>
-                  {{ $pasien[0]->no_rm }}
-                </p>
-
-                <hr>
-
-                <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
-
-                <p>{{ $alamat }}</p>
-
-                <hr>
-
-                <strong><i class="fas fa-calendar mr-1"></i> Tanggal Lahir</strong>
-
-                <p>
-                  {{ $pasien[0]->tgl_lahir }}
-                </p>
-
-                <hr>
-
-              </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-
-          <div class="col-md-9">
-            <div class="card">
-              <div class="card-header p-2">
-                <ul class="nav nav-pills">
-                  <li class="nav-item"><a class="nav-link active" href="#dokter" data-toggle="tab">Riwayat Pemeriksaan Dokter</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#perawat" data-toggle="tab">Riwayat Pemeriksaan Perawat/Bidan</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Settings</a></li>
-                </ul>
-              </div><!-- /.card-header -->
-              <div class="card-body">
-                <div class="tab-content">
-                  <div class="active tab-pane" id="dokter">
-                    <!-- Post -->
-                    <div class="post">
-                      <div class="user-block">
-                    
-                        <img class="img-circle img-bordered-sm" src="public/img/logo_rs.png" alt="user image">
-                        <span class="username">
-                          {{ $ass_awal[0]->nama_dokter }} <a href="#">({{ $unit }})</a>
-                        </span>
-                        <span class="description">Shared publicly {{ $ass_awal[0]->tglwaktu_selesai }} today</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="card">
-                     
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-success">Keluhan Utama</p>
-                          {{ $ass_awal[0]->keluhan_utama }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-success">Diagnosis</p>
-                          {{ $ass_awal[0]->diagnosis }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-success">Diagnosis</p>
-                          {{ $ass_awal[0]->riwayat_penyakit }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-success">Pemeriksaan Fisik</p>
-                          {{ $ass_awal[0]->pemeriksaan_fisik }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-success">Riwayat Alergi</p>
-                          {{ $ass_awal[0]->riwayat_alergi_0 }}, {{ $ass_awal[0]->riwayat_alergi_1}}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-success">Rencana Terapi</p>
-                          {{ $ass_awal[0]->rencana_terapi }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-success">Rencana Pemeriksaan Penunjang</p>
-                          {{ $ass_awal[0]->rencana_pemeriksaan_penunjang }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-success">Rujuk</p>
-                          {{ $ass_awal[0]->dirujuk_ke }} <br>
-                          Keterangan di rujuk :
-                          {{ $ass_awal[0]->keterangan_dirujuk}}
-                        </div>
-                      </div>
-
-                      <p class="text-right"> 
-                        <img width="200px" src="{{ $ass_awal[0]->signature }}" alt=""> <br>
-
-                      </p>
-
-                    </div>
-                    <!-- /.post -->
-
-                  </div>
-                  <!-- /.tab-pane -->
-                  <div class="tab-pane" id="perawat">
-                    <!-- The timeline -->
-                    <div class="post">
-                      <div class="user-block">
-                    
-                        <img class="img-circle img-bordered-sm" src="public/img/logo_rs.png" alt="user image">
-                        <span class="username">
-                          Perawat  <a href="#">({{ $unit }})</a>
-                        </span>
-                        <span class="description">Shared publicly {{ $ass_kep[0]->tgl_selesai }} today</span>
-                      </div>
-                      <!-- /.user-block -->
-                      <div class="card">
-                     
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-warning">Keluhan Utama</p>
-                          {{ $ass_kep[0]->keluhan_utama }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-warning">Diagnosa</p>
-                          {{ $ass_kep[0]->diag_perawat }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-warning">Nyeri</p>
-                          {{ $ass_kep[0]->assesmen_nyeri }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-warning">Status Fungsi Tubuh</p>
-                          {{ $ass_kep[0]->stafungsi_cacattubuh }} <br>
-                          {{ $ass_kep[0]->stafungsi_Alatbantu }} <br>
-                         </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-warning">Skrinning Gizi</p>
-                          {{ $ass_kep[0]->assesmen_nyeri }} <br>
-                          {{ $ass_kep[0]->Skri_gizi_1 }} <br>
-                          {{ $ass_kep[0]->Skri_gizi_2 }} <br>
-                          {{ $ass_kep[0]->Skri_gizi_3 }} <br>
-                          {{ $ass_kep[0]->Skri_gizi_4 }}
-                         </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-warning">Rencana Keperawatan</p>
-                          {{ $ass_kep[0]->rencana_perawat }}
-                        </div>
-                      </div>
-                      <div class="card">
-                        <div class="card-body text-md ">
-                          <p class="text-bold text-md bg-warning">Tindakan Keperawatan</p>
-                          {{ $ass_kep[0]->tindakan_perawat }}
-                        </div>
-                      </div>
-                     
-
-                      <p class="text-right"> 
-                        <img width="200px" src="{{ $ass_kep[0]->ttd_perawat }}" alt=""> <br>
-
-                      </p>
-
-                    </div>
-                  </div>
-                  <!-- /.tab-pane -->
-
-                  <div class="tab-pane" id="settings">
-                    <form class="form-horizontal">
-                      <div class="form-group row">
-                        <label for="inputName" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputName" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
-                        <div class="col-sm-10">
-                          <input type="email" class="form-control" id="inputEmail" placeholder="Email">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputName2" placeholder="Name">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
-                        <div class="col-sm-10">
-                          <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                        <div class="col-sm-10">
-                          <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox"> I agree to the <a href="#">terms and conditions</a>
-                            </label>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-10">
-                          <button type="submit" class="btn btn-danger">Submit</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                  <!-- /.tab-pane -->
-                </div>
-                <!-- /.tab-content -->
-              </div><!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-          </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modallihatresume" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Riwayat Resume Medis</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="lihatresume_lama">
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function editdataform() {
+    spinner = $('#loader2');
+    spinner.show();
+    kodekunjungan = $('#kodekunjungan').val()
+    tglmasuk = $('#tglmasuk').val()
+    nomorrm = $('#nomorrm').val()
+    $.ajax({
+      type: 'post',
+      data: {
+        _token: "{{ csrf_token() }}",
+        kodekunjungan,
+        tglmasuk,
+        nomorrm
+      },
+      url: '<?= route('editform') ?>',
+      error: function(data) {
+        spinner.hide();
+        alert('error')
+      },
+      success: function(response) {
+        spinner.hide();
+        $('#modaleditform').modal('show')
+        $('.editform').html(response)
+      }
+    });
+  }
+  $(".lihatresume").click(function() {
+    kode = $(this).attr('kode')
+    spinner = $('#loader2');
+    spinner.show();
+    $.ajax({
+            type: 'post',
+            data: {
+                _token: "{{ csrf_token() }}",
+                kode
+            },
+            url: '<?= route('tampilresume_lama') ?>',
+            error: function(data) {
+                spinner.hide();
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oopss.....',
+                    text: 'Sepertinya ada masalah ...',
+                    footer: ''
+                })
+            },
+            success: function(response) {
+                spinner.hide();
+                $('#modallihatresume').modal('show')
+                $('.lihatresume_lama').html(response)
+            }
+        });
+  })
+</script>

@@ -45,28 +45,13 @@
 
     <div style="font-family:calibri" class="card-header p-2 text-md">
         <ul class="nav nav-pills">
-            <li class="nav-item"><a class="nav-link tampilriwayat" href="#activity" data-toggle="tab" nomorrm="{{ $rm }}">Riwayat Pelayanan / Tindakan
-                    Medis</a>
-            </li>
-            <li class="nav-item"><a class="nav-link tampilcppt" href="#cppt" data-toggle="tab" nomorrm="{{ $rm }}">CPPT</a></li>
             <li class="nav-item"><a class="nav-link active" href="#timeline" data-toggle="tab">E - Form</a></li>
-            <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis</a></li>
-            <li  class="nav-item"><a class="nav-link resume" href="#resume" data-toggle="tab" nomorrm="{{ $rm }}">Resume Medis</a></li>
-           {{-- <li hidden class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Tindakan Medis & Order
-                    Layanan</a></li>--}}
-
+            <li class="nav-item"><a class="nav-link resume" href="#resume" data-toggle="tab" nomorrm="{{ $rm }}">Resume Medis</a></li>
+            <li class="nav-item"><a class="nav-link tampilcppt" href="#cppt" data-toggle="tab" nomorrm="{{ $rm }}">CPPT</a></li>
         </ul>
     </div>
     <div class="card-body ">
         <div class="tab-content">
-            <div class="tab-pane" id="activity">
-                <div class="post">
-                    <div class="tampilriwayatlayan">
-                       
-                    </div>                          
-                </div>
-            </div>
-            <!-- /.tab-pane -->
             <div class="tab-pane" id="cppt">
                 <div class="viewcppt">
                 </div>
@@ -78,83 +63,38 @@
             <div class="active tab-pane" id="timeline">
                 <div style="font-family:calibri" class="form-group">
                     <select style="font-family:calibri" class="custom-select form-control-border text-md" id="jenisform" onchange="gantiform()">
-                        <!-- <option>--- Silahkan Pilih Jenis Form ---</option> -->
                         <option value="">-- Pilih Form --</option>
-                        <!-- <option value="2">RM.02.01-RJ / Pasien Lama ( dewasa )</option> -->
-                      @if ($unit == 'ANAK (KLINIK)')
+                        <option value="1">RM.02.01-RJ / Pasien Dewasa</option>
                         <option value="3">RM.02.01-RJ / Pasien Anak</option>
-                        @else
-                        <option  value="1">RM.02.01-RJ / Pasien Dewasa</option>
-                        <option value="3">RM.02.01-RJ / Pasien Anak</option>
-
-
-                        <option hidden value="radiologi">Form Order Radiologi</option>
-                        <option hidden value="laboratorium">Form Order Laboratorium</option>
-                        @endif
                     </select>
                 </div>
                 <div class="viewform">
                     <h5 class="text-danger">Tidak ada form yang dipilih ...</h5>
                 </div>
             </div>
-            <!-- /.tab-pane -->
-
-            <div class="tab-pane" id="settings">
-                <div class="row">
-                    <div class="col-md-5">
-                        <div class="card mt-3">
-                            <div class="card-header bg-info">Silahkan Pilih Tindakan</div>
-                            <div class="card-body scroll">
-                                <table id="tabeltindakan" class="table table-sm table-bordered table-hover text-xs">
-                                    <thead>
-                                        <th>Nama tindakan</th>
-                                        <th>Tarif</th>
-                                    </thead>
-                                    <tbody class="scroll">
-                                        {{-- @foreach ($tarif as $t)
-                                        <tr class="pilihtindakan" namatindakan="{{ $t->Tindakan }}" tarif="{{ $t->tarif }}" kode="{{ $t->kode }}">
-                                            <td>{{ $t->Tindakan }}</td>
-                                            <td> RP. {{ $t->tarif }}</td>
-                                        </tr>
-                                        @endforeach --}}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card">
-                            <div class="card-header bg-success">Tindakan / Layanan Pasien</div>
-                        </div>
-                        <div class="card-body">
-                            <form action="" method="post" class="formtindakan">
-                                <div class="input_fields_wrap">
-                                    <div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Pilih dokter</label>
-                                        <select class="form-control" id="dokterpemeriksa">
-                                            {{-- @foreach ($dokter as $d)
-                                            <option value="{{ $d->kode_dokter }}">{{ $d->nama_dokter }}</option>
-                                            @endforeach --}}
-                                        </select>
-                                    </div>
-
-                                    <button type="button" class="btn btn-warning mb-2 simpanlayanan" id="simpanlayanan">Simpan Tindakan</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="card-footer">
-                            <p>pilih layanan untuk pasien</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- /.tab-pane -->
         </div>
         <!-- /.tab-content -->
     </div><!-- /.card-body -->
+</div>
+<div id="exampleModal" class="modal" data-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Silahkan isi form berikut ...</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="tampil-formnya">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            </div>
+        </div>
+    </div>
 </div>
 <script>
     $(function() {
@@ -177,6 +117,7 @@
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         });
     });
+
     function gantiform() {
         spinner = $('#loader2');
         spinner.show();
@@ -206,7 +147,10 @@
             },
             success: function(response) {
                 spinner.hide();
-                $('.viewform').html(response)
+                if (id != '') {
+                    $('#exampleModal').modal('show')
+                }
+                $('.tampil-formnya').html(response)
             }
         });
     }
@@ -236,39 +180,14 @@
             }
         });
     });
-    $(".tampilriwayat").click(function() {
-        nomorrm = $(this).attr('nomorrm')
-        counter = $('#cek_counter').val()
-        spinner = $('#loader2');
-        spinner.show();
-        $.ajax({
-            type: 'post',
-            data: {
-                _token: "{{ csrf_token() }}",
-                nomorrm,counter
-            },
-            url: '<?= route('tampilriwayat') ?>',
-            error: function(data) {
-                spinner.hide();
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Sepertinya ada masalah ...',
-                    footer: ''
-                })
-            },
-            success: function(response) {
-                spinner.hide();
-                $('.tampilriwayatlayan').html(response)
-            }
-        });
-    });
-    $(".resume").click(function(){
+
+    $(".resume").click(function() {
         nomorrm = $(this).attr('nomorrm')
         tglmasuk = $('#tglmasuk').val()
         nama = $('#nama').val()
         unit = $('#unit').val()
         alamat = $('#alamat').val()
+        kodekunjungan = $('#kodekunjungan').val()
         umur = $('#umur').val()
         counter = $('#cek_counter').val()
         spinner = $('#loader2');
@@ -278,7 +197,8 @@
             data: {
                 _token: "{{ csrf_token() }}",
                 tglmasuk,
-                nomorrm, 
+                nomorrm,
+                kodekunjungan,
                 nama,
                 unit,
                 alamat,
@@ -286,7 +206,7 @@
                 counter
             },
             url: '<?= route('tampilresume') ?>',
-            error: function(data){
+            error: function(data) {
                 spinner.hide();
                 Swal.fire({
                     icon: 'error',
@@ -295,13 +215,13 @@
                     footer: ''
                 })
             },
-            success: function(response){
+            success: function(response) {
                 spinner.hide();
                 $('.viewresume').html(response)
             }
         });
     });
-    
+
     function carilayanan() {
         spinner = $('#loader');
         spinner.show();

@@ -106,16 +106,51 @@ class Erm2Controller extends Controller
         $umur = $request->umur;
         $periode = DB::select('SELECT DISTINCT DATE(tgl_masuk) as tgl_masuk from ts_kunjungan where no_rm = ? ORDER BY tgl_masuk desc', [$nomorrm]);
         $counter = DB::select('SELECT DISTINCT counter from ts_kunjungan where no_rm = ?', [$nomorrm]);
-
-        if ($id == 3) {
+        $kode_unit2 = auth()->user()->unit;
+        if ($id == 1) {
             return view('erm2.rm03', [
                 'now' => Carbon::now()->timezone('Asia/Jakarta'),
                 'tglkunjungan' => $tglkunjugan,
                 'counter' => $counter,
                 'pasien' => DB::select('SELECT * from mt_pasien where no_rm = ?', [$nomorrm]),
             ]);
-        } else if ($id == 'radiologi') {
-            return view('erm.formradiologi', [
+        }else if($id != 1 || $id != 2){
+            $layanan = $request->layanan;
+           if ($id == 'radiologi') {
+              $kode_unit = '3003';
+              $unittujuan = $kode_unit;
+              $jenisform = 2;
+            } 
+            else if ($id == 'tindakan medis') {
+                $kode_unit = auth()->user()->unit;
+                $unittujuan = $kode_unit;
+                $jenisform = 1;
+            }
+            else if ($id == 'laboratorium') {
+                $kode_unit = '3002';
+                $unittujuan = $kode_unit;
+                $jenisform = 2;
+            }
+            else if ($id == 'laboratoriumPA') {
+                $kode_unit = '3020';
+                $unittujuan = $kode_unit;
+                $jenisform = 2;
+            }
+            else if ($id == 'endos') {
+                $kode_unit = '3012';
+                $unittujuan = $kode_unit;
+                $jenisform = 2;
+            }
+            else if ($id == 'bankdarah') {
+                $kode_unit = '3011';
+                $unittujuan = $kode_unit;
+                $jenisform = 2;
+            }
+            $dokter = DB::select('SELECT * from mt_kuota_dokter_poli where kode_poli = ?', [$kode_unit2]); 
+            return view('erm2.orderpenunjang', [
+                'layanan' => DB::select("CALL SP_PANGGIL_TARIF_TINDAKAN_RS('2','$layanan','$kode_unit')"),
+                'dokter' => $dokter,
+                'dok_log' => auth()->user()->kode_dpjp,
                 'rm' => $nomorrm,
                 'tglmasuk' => $tglmasuk,
                 'periode' => $periode,
@@ -124,21 +159,11 @@ class Erm2Controller extends Controller
                 'unit'  => $unit,
                 'alamat' => $alamat,
                 'umur' => $umur,
-                'now' => Carbon::now()->timezone('Asia/Jakarta')
+                'now' => Carbon::now()->timezone('Asia/Jakarta'),
+                'jenisform' => $jenisform,
+                'unittujuan' => $unittujuan
             ]);
-        } else if ($id == 'laboratorium') {
-            return view('erm.formlaboratorium', [
-                'rm' => $nomorrm,
-                'tglmasuk' => $tglmasuk,
-                'periode' => $periode,
-                'counter' => $counter,
-                'nama' => $nama,
-                'unit'  => $unit,
-                'alamat' => $alamat,
-                'umur' => $umur,
-                'now' => Carbon::now()->timezone('Asia/Jakarta')
-            ]);
-        }
+        }       
     }
     public function carilayanan(request $request)
     {

@@ -18,17 +18,19 @@ Route::group(['middleware' => ['hak_akses:2','auth']], function () {
     Route::post('/pilihform', [ErmController::class, 'pilihform'])->name('pilihform');
     Route::post('/carilayanan', [ErmController::class, 'carilayanan'])->name('carilayanan');
     Route::post('/simpanrm02', [ErmController::class, 'simpanrm02'])->name('simpanrm02');
+    Route::post('/simpanrm02edit', [ErmController::class, 'simpanrm02edit'])->name('simpanrm02edit');
     Route::post('/simpanformanakbaru', [ErmController::class, 'simpanformanakbaru'])->name('simpanformanakbaru');
     Route::post('/simpanrm02lama', [ErmController::class, 'simpanrm02lama'])->name('simpanrm02lama');
     Route::post('/simpanrmanak', [ErmController::class, 'simpanrmanak'])->name('simpanrmanak');
-    Route::post('/simpanlayanan', [ErmController::class, 'simpanlayanan'])->name('simpanlayanan');
     Route::get('/caritarif', [ErmController::class, 'caritarif'])->name('caritarif');
     Route::get('/caritarif', [ErmController::class, 'caritarif'])->name('caritarif');
 });
+
+Route::post('/editform', [ErmController::class, 'editform'])->name('editform');
 Route::post('tampilcppt', [ErmController::class, 'tampilcppt'])->middleware('auth')->name('tampilcppt');
 Route::post('tampilcppt2', [ErmController::class, 'tampilcppt'])->middleware('auth')->name('tampilcppt2');
-Route::post('tampilriwayat', [ErmController::class, 'tampilriwayat'])->middleware('auth')->name('tampilriwayat');
 Route::post('tampilresume', [ErmController::class, 'tampilresume'])->middleware('auth')->name('tampilresume');
+Route::post('/tampilresume_lama', [ErmController::class, 'tampilresume_lama'])->name('tampilresume_lama');
 
 Route::group(['middleware' => 'hak_akses:3', 'auth'], function () {
     Route::get('ermdokter', [Erm2Controller::class, 'index'])->name('ermdokter');
@@ -39,4 +41,5 @@ Route::group(['middleware' => 'hak_akses:3', 'auth'], function () {
     Route::post('/simpanrm03', [Erm2Controller::class, 'simpanrm03'])->name('simpanrm03');
     Route::post('/simpanradiologi', [ErmController::class, 'simpanradiologi'])->name('simpanradiologi');
     Route::post('/simpanformlab', [ErmController::class, 'simpanformlab'])->name('simpanformlab');
+    Route::post('/simpanlayanan', [ErmController::class, 'simpanlayanan'])->name('simpanlayanan');
 });
